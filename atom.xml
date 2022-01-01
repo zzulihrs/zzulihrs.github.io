@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>Gridea</title>
-    <updated>2022-01-01T07:06:26.441Z</updated>
+    <updated>2022-01-01T11:01:10.237Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -11,12 +11,12 @@
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Gridea</rights>
     <entry>
-        <title type="html"><![CDATA[数据库基础]]></title>
+        <title type="html"><![CDATA[MySQL]]></title>
         <id>https://zzulihrs.github.io/post/shu-ju-ku-ji-chu/</id>
         <link href="https://zzulihrs.github.io/post/shu-ju-ku-ji-chu/">
         </link>
         <updated>2022-01-01T07:03:51.000Z</updated>
-        <content type="html"><![CDATA[<p>。。。</p>
+        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1NJ411J79W">狂神说</a></p>
 ]]></content>
     </entry>
     <entry>
