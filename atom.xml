@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>Gridea</title>
-    <updated>2022-01-02T01:57:16.151Z</updated>
+    <updated>2022-01-02T01:59:07.277Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -83,9 +83,6 @@ homework 1 test 可以评测lesson_1的所有作业
         </link>
         <updated>2021-12-28T12:32:26.000Z</updated>
         <content type="html"><![CDATA[<!-- more -->
-<h1 id="markdown">markdown</h1>
-<h2 id="acm">ACM</h2>
-<p>⭐️</p>
 ]]></content>
     </entry>
 </feed>
