@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-02T03:07:40.885Z</updated>
+    <updated>2022-01-02T07:19:34.040Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -10,6 +10,188 @@
     <logo>https://zzulihrs.github.io/images/avatar.png</logo>
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, blog</rights>
+    <entry>
+        <title type="html"><![CDATA[随便写写题]]></title>
+        <id>https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/</id>
+        <link href="https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/">
+        </link>
+        <updated>2022-01-02T07:11:11.000Z</updated>
+        <content type="html"><![CDATA[<p>2022/01/02</p>
+<h1 id="5970-参加会议的最多员工数"><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></h1>
+<p>leetcode第274周赛D题<br>
+还是挺有意思<br>
+思路：<br>
+两种情况<br>
+1）A, B互相喜欢，两个人的追随者都可以放上，找出所有符合条件的情况<br>
+2）最大环，只能放一个<br>
+取两种情况的最大值</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 65;
+const int mod = 1713222373;
+
+class Solution {
+public:
+	#define maxsize 100010
+	#define pb push_back
+	#define fi first
+	#define se second
+	#define SZ(x) (int)x.size()
+	#define ALL(x) x.begin(), x.end()
+	/*
+	两种情况
+	1）A, B互相喜欢，两个人的追随者都可以放上，找出所有符合条件的情况
+	2）最大环，只能放一个
+	取两种情况的最大值
+	*/
+
+	vector&lt;int&gt; e[maxsize], re[maxsize];
+	int d[maxsize];
+
+    int maximumInvitations(vector&lt;int&gt;&amp; a) {
+    	int n = SZ(a);
+
+  		for(int i = 0; i &lt; SZ(a); ++i)
+  		{
+  			e[i].pb(a[i]);
+  			re[a[i]].pb(i);
+  			d[a[i]]++;
+  		}
+  		queue&lt;int&gt; q; 
+  		vector&lt;int&gt; dp(n, 1);
+  		for(int i = 0; i &lt; n; ++i) 
+  			if(!d[i]) q.push(i);
+  		while(SZ(q)) {
+  			int u = q.front(); q.pop();
+  			dp[a[u]] = max(dp[a[u]], dp[u]+1);
+  			if(--d[a[u]] == 0) q.push(a[u]);
+  		}
+  		int ans = 0;
+  		for(int i = 0; i &lt; n; ++i)
+  			if(a[a[i]] == i) //两个之间互相喜欢，形成一个集合
+  				ans += dp[i]+dp[a[i]];
+ 		ans /= 2; //计算了A, B和B, A两种情况，去重
+
+  		//求最大环
+  		vector&lt;int&gt; vis(n, 0);
+  		for(int i = 0; i &lt; n; ++i) {
+  			if(vis[i]) continue;
+  			vector&lt;int&gt; b;
+  			int x = i;
+  			while(!vis[x]) { 
+  				vis[x] = 1;
+  				b.pb(x);
+  				x = a[x];
+  			}
+  			for(int j = 0; j &lt; SZ(b); ++j)
+  				if(b[j] == x)  //x是环上的点，也是与链的交点
+  				ans = max(ans, SZ(b)-j);
+  		}
+
+
+  		return ans;	      
+    }
+}T;
+
+void sol()
+{
+	vector&lt;int&gt; a{3,0,1,4,1};
+	db1(T.maximumInvitations(a));
+}
+signed main()
+{	
+	//IOS
+    //int _ = 1;	cin&gt;&gt;_;	while (_--)
+        sol();
+}
+</code></pre>
+<h1 id="d-keep-the-average-high"><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></h1>
+<p>思路：无脑dp，同时记录选择或不选的<strong>最大长度</strong>和<strong>最小sum(最坏情况)</strong></p>
+<pre><code class="language-c++">﻿#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 65;
+const int mod = 1713222373;
+
+int n, m;
+int a[N];
+int dp[N][2]; //选与不选的最大长度
+int sum[N][2];//对应的最小sum
+//te
+
+void sol()
+{
+	int x;
+	cin&gt;&gt;n;
+	for(int i = 1; i &lt;= n; ++i) cin&gt;&gt;a[i];
+	cin&gt;&gt;x;
+	for(int i = 1; i &lt;= n; ++i) a[i] -= x;
+	dp[1][0] = 0;
+	dp[1][1] = 1;
+	sum[1][0] = 0;
+	sum[1][1] = a[1];
+
+	for(int i = 2;i &lt;= n; ++i) {
+		dp[i][0] = max(dp[i-1][0], dp[i-1][1]);
+		sum[i][0] = 0;
+
+		dp[i][1] = dp[i-1][0]+1;
+		sum[i][1] = a[i];
+		if(dp[i][1] &lt; dp[i-1][1]+1&amp;&amp;sum[i-1][1]+a[i]&gt;=0) {
+			dp[i][1] = dp[i-1][1]+1;
+			sum[i][1] = min(sum[i-1][1]+a[i], a[i]);
+		}
+
+	}
+	//gg;
+	//for(int i = 1; i &lt;= n; ++i) db2(dp[i][0], dp[i][1]);
+	cout&lt;&lt;max(dp[n][0], dp[n][1])&lt;&lt;endl;
+}
+signed main()
+{	
+	IOS
+    int _ = 1;	cin&gt;&gt;_;	while (_--)
+        sol();
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux基础课]]></title>
         <id>https://zzulihrs.github.io/post/linux-ji-chu-ke/</id>
