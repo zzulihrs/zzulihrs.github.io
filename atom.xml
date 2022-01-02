@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
-    <title>Gridea</title>
-    <updated>2022-01-02T03:05:15.645Z</updated>
+    <title>blog</title>
+    <updated>2022-01-02T03:05:46.873Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
     <subtitle>fw</subtitle>
     <logo>https://zzulihrs.github.io/images/avatar.png</logo>
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2022, Gridea</rights>
+    <rights>All rights reserved 2022, blog</rights>
     <entry>
         <title type="html"><![CDATA[Linux基础课]]></title>
         <id>https://zzulihrs.github.io/post/linux-ji-chu-ke/</id>
