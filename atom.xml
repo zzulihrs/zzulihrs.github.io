@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-03T08:50:55.881Z</updated>
+    <updated>2022-01-03T13:28:40.179Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -16,9 +16,9 @@
         <link href="https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/">
         </link>
         <updated>2022-01-02T07:11:11.000Z</updated>
-        <content type="html"><![CDATA[<p>[toc]</p>
+        <content type="html"><![CDATA[<p>[TOC]</p>
 <h1 id="20220102">2022/01/02</h1>
-<h2 id="5970-参加会议的最多员工数"><strong><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></strong></h2>
+<h2 id="5970-参加会议的最多员工数"><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></h2>
 <p>leetcode第274周赛D题</p>
 <p>挺有意思的题</p>
 <p>思路：</p>
@@ -125,7 +125,7 @@ signed main()
         sol();
 }
 </code></pre>
-<h1 id="d-keep-the-average-high"><strong><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></strong></h1>
+<h2 id="d-keep-the-average-high"><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></h2>
 <p>思路：无脑dp，同时记录选择或不选的<strong><strong>最大长度</strong></strong>和<strong><strong>最小sum(最坏情况)</strong></strong></p>
 <p>代码：</p>
 <pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
@@ -194,7 +194,7 @@ signed main()
 
 </code></pre>
 <h1 id="20220103">2022/01/03</h1>
-<h2 id="d-shuffle"><strong><a href="https://codeforces.com/problemset/problem/1622/D">D. Shuffle</a></strong></h2>
+<h2 id="d-shuffle"><a href="https://codeforces.com/problemset/problem/1622/D">D. Shuffle</a></h2>
 <p>题意：对01串进行操作：取其中1的个数为k的连续子串，将这个子串重新排列。问至少一次操作后的01串有多少种情况</p>
 <p>思路：</p>
 <pre><code class="language-txt">pos记录每个1的位置
