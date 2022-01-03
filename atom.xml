@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-03T02:27:17.668Z</updated>
+    <updated>2022-01-03T05:33:50.116Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -16,15 +16,17 @@
         <link href="https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/">
         </link>
         <updated>2022-01-02T07:11:11.000Z</updated>
-        <content type="html"><![CDATA[<p>2022/01/02</p>
-<h1 id="5970-参加会议的最多员工数"><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></h1>
-<p>leetcode第274周赛D题<br>
-还是挺有意思<br>
-思路：<br>
-两种情况<br>
-1）A, B互相喜欢，两个人的追随者都可以放上，找出所有符合条件的情况<br>
-2）最大环，只能放一个<br>
-取两种情况的最大值</p>
+        <content type="html"><![CDATA[<p>[toc]</p>
+<h1 id="20220102">2022/01/02</h1>
+<h2 id="5970-参加会议的最多员工数"><strong><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></strong></h2>
+<p>leetcode第274周赛D题</p>
+<p>挺有意思的题</p>
+<p>思路：</p>
+<p>两种情况</p>
+<p>1）A, B互相喜欢，两个人的追随者都可以放上，找出所有符合条件的情况</p>
+<p>2）最大环，只能放一个</p>
+<p>取两种情况的最大值</p>
+<p>代码：</p>
 <pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
 #define INF 0x3f3f3f3f
 #define LLINF 0x3f3f3f3f3f3f3f3f
@@ -123,9 +125,10 @@ signed main()
         sol();
 }
 </code></pre>
-<h1 id="d-keep-the-average-high"><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></h1>
-<p>思路：无脑dp，同时记录选择或不选的<strong>最大长度</strong>和<strong>最小sum(最坏情况)</strong></p>
-<pre><code class="language-c++">﻿#include &lt;bits/stdc++.h&gt;
+<h1 id="d-keep-the-average-high"><strong><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></strong></h1>
+<p>思路：无脑dp，同时记录选择或不选的<strong><strong>最大长度</strong></strong>和<strong><strong>最小sum(最坏情况)</strong></strong></p>
+<p>代码：</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
 #define INF 0x3f3f3f3f
 #define LLINF 0x3f3f3f3f3f3f3f3f
 #define eps 1e-10
@@ -189,6 +192,110 @@ signed main()
         sol();
 }
 
+</code></pre>
+<h1 id="20220103">2022/01/03</h1>
+<h2 id="d-shuffle"><strong><a href="https://codeforces.com/problemset/problem/1622/D">D. Shuffle</a></strong></h2>
+<p>题意：对01串进行操作：取其中1的个数为k的连续子串，将这个子串重新排列。问至少一次操作后的01串有多少种情况</p>
+<p>思路：</p>
+<pre><code class="language-txt">pos记录每个1的位置
+1和0的排列可以转换成小球放盒问题，m个1，n个0，等价于m+1个不同盒子，n个相同球的排列数
+如何计算所有排列
+以7 2  1100110为例
+
++1100的排列数
++1001的排列数 - 100的排列数，这是1100与1001之间的重复
+以此类推
++00110的排列数 - 001的排列数
+</code></pre>
+<p>代码：</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 5100;
+const int mod = 998244353;
+
+ll fac[N], inv[N];
+
+ll ksm(ll x, ll y)
+{
+	ll ans = 1;
+	while(y)
+	{
+		if(y&amp;1) ans = ans*x%mod;
+		x = x*x%mod;
+		y &gt;&gt;= 1;
+	}
+	return ans;
+}
+void init()
+{
+	fac[0] = inv[0] = 1;
+	for(int i = 1; i &lt;= 10000; ++i) fac[i] = fac[i-1]*i%mod;
+	inv[10000] = ksm(fac[10000], mod-2);
+	for(int i = 10000; i &gt;= 1; --i) inv[i-1] = inv[i]*i%mod;
+}
+ll C(int n, int m)
+{
+	return fac[n]*inv[m]%mod*inv[n-m]%mod;
+}
+ll calc(int m, int n)//m个不同盒子，n个相同小球的排列数
+{
+	return C(m+n-1, m-1);
+}
+int a[M];
+
+vector&lt;int&gt; pos;
+bool vis[M];
+
+void sol()
+{
+	int n, k;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+	for(int i = 1; i &lt;= n; ++i) scanf(&quot;%1d&quot;, &amp;a[i]);
+	for(int i = 1; i &lt;= n; ++i)
+		if(a[i]) pos.pb(i);
+	
+	if(SZ(pos) &lt; k||k==0) {
+		puts(&quot;1&quot;);
+		return ;
+	}
+
+	ll ans = 0;
+	int l = 1, r = n;
+	pos.pb(n+1);
+	for(int i = k-1; i+1 &lt; SZ(pos); i++) {
+		r = pos[i+1]-1;
+		//db2(l, r);
+		ans = (ans+calc(k+1, r-l-k+1))%mod;
+ 		if(i!=k-1) //第一个区间不用去重
+		ans = (ans-calc(k, pos[i]-1-l-(k-1)+1)+mod)%mod; //去重，与前一个区间重复
+		//重复的是(l, pos[i]-1)区间，里面有k-1个1
+		l = pos[i-k+1]+1;
+	}
+	printf(&quot;%I64d\n&quot;, ans);
+}
+signed main()
+{	
+	init();
+        sol();
+}
 </code></pre>
 ]]></content>
     </entry>
