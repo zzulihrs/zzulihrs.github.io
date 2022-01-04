@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-04T09:11:42.528Z</updated>
+    <updated>2022-01-04T12:07:51.129Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -63,6 +63,11 @@
 </ul>
 <p>Linux系统中一般默认使用bash，所以接下来讲解bash中的语法。</p>
 <p>文件开头需要写<code>#! /bin/bash</code>，指明bash为脚本解释器。</p>
+<p>脚本示例<br>
+新建一个<code>test.sh</code>文件，内容如下：</p>
+<pre><code class="language-shell">#! /bin/bash
+echo &quot;Hello World!&quot;
+</code></pre>
 <p><strong>学习技巧</strong></p>
 <p>不要死记硬背，遇到含糊不清的地方，可以在AC Terminal里实际运行一遍。</p>
 <p><strong>运行方式</strong></p>
