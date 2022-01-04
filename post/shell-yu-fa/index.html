@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>shell语法 | blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641265925635">
+<link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+1.shell语法
+2.注释
+3.变量
+
+1.shell语法
+# 1. shell语法
+## 概论
+shell是我们通过命令行与操作系统沟通的语言。
+shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。
+AC ..." />
+    <meta name="keywords" content="Linux基础课" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zzulihrs.github.io">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641265925635" class="site-logo">
+        <h1 class="site-title">blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      fw
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zzulihrs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">shell语法</h2>
+            <div class="post-date">2022-01-03</div>
+            
+            <div class="post-content" v-pre>
+              <ul>
+<li><a href="#1">1.shell语法</a></li>
+<li><a href="#2">2.注释</a></li>
+<li><a href="#3">3.变量</a></li>
+</ul>
+<h2 id = "1">1.shell语法<h2>
+# 1. shell语法
+## 概论
+shell是我们通过命令行与操作系统沟通的语言。
+<p>shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。<br>
+AC Terminal中的命令行可以看成是一个“shell脚本在逐行执行”。</p>
+<p>Linux中常见的shell脚本有很多种，常见的有：</p>
+<ul>
+<li>Bourne Shell(<code>/usr/bin/sh'或'/bin/sh</code>)</li>
+<li>Bourne Again Shell(<code>/bin/bash</code>)</li>
+<li>C Shell(<code>/usr/bin/csh</code>)</li>
+<li>K Shell(<code>/usr/bin/ksh</code>)</li>
+<li>zsh</li>
+<li>...<br>
+Linux系统中一般默认使用bash，所以接下来讲解bash中的语法。<br>
+文件开头需要写<code>#! /bin/bash</code>，指明bash为脚本解释器。</li>
+</ul>
+<h2 id="学习技巧">学习技巧</h2>
+<p>不要死记硬背，遇到含糊不清的地方，可以在AC Terminal里实际运行一遍。</p>
+<h2 id="运行方式">运行方式</h2>
+<p>作为可执行文件</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh  # 使脚本具有可执行权限
+acs@9e0ebfcd82d7:~$ ./test.sh  # 当前路径下执行
+Hello World!  # 脚本输出
+acs@9e0ebfcd82d7:~$ /home/acs/test.sh  # 绝对路径下执行
+Hello World!  # 脚本输出
+acs@9e0ebfcd82d7:~$ ~/test.sh  # 家目录路径下执行
+Hello World!  # 脚本输出
+</code></pre>
+<p>用解释器执行</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ bash test.sh
+Hello World!  # 脚本输出
+</code></pre>
+<h2 id = "2">2.注释<h2>
+<h1 id="2注释">2.注释</h1>
+<h2 id="单行注释">单行注释</h2>
+<p>每行中<code>#</code>之后的内容均是注释。</p>
+<pre><code class="language-txt"># 这是一行注释
+echo 'Hello World'  #  这也是注释
+</code></pre>
+<h2 id="多行注释">多行注释</h2>
+<p>格式：</p>
+<pre><code class="language-txt">:&lt;&lt;EOF
+第一行注释
+第二行注释
+第三行注释
+EOF
+</code></pre>
+<p>其中<code>EOF</code>可以换成其它任意字符串。例如：</p>
+<pre><code class="language-txt">:&lt;&lt;abc
+第一行注释
+第二行注释
+第三行注释
+abc
+
+:&lt;&lt;!
+第一行注释
+第二行注释
+第三行注释
+!
+</code></pre>
+<h2 id = "3">3.变量<h2>
+<h1 id="3变量">3.变量</h1>
+<h2 id="定义变量">定义变量</h2>
+<p>定义变量，不需要加<code>$</code>符号，例如：</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://zzulihrs.github.io/tag/LGSJCxMpv/" class="tag">
+                    Linux基础课
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/">
+                  <h3 class="post-title">
+                    随便写写题
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

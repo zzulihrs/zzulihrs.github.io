@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-03T13:34:55.923Z</updated>
+    <updated>2022-01-04T03:12:07.674Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -11,13 +11,100 @@
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, blog</rights>
     <entry>
+        <title type="html"><![CDATA[shell语法]]></title>
+        <id>https://zzulihrs.github.io/post/shell-yu-fa/</id>
+        <link href="https://zzulihrs.github.io/post/shell-yu-fa/">
+        </link>
+        <updated>2022-01-03T14:15:06.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li><a href="#1">1.shell语法</a></li>
+<li><a href="#2">2.注释</a></li>
+<li><a href="#3">3.变量</a></li>
+</ul>
+<h2 id = "1">1.shell语法<h2>
+# 1. shell语法
+## 概论
+shell是我们通过命令行与操作系统沟通的语言。
+<p>shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。<br>
+AC Terminal中的命令行可以看成是一个“shell脚本在逐行执行”。</p>
+<p>Linux中常见的shell脚本有很多种，常见的有：</p>
+<ul>
+<li>Bourne Shell(<code>/usr/bin/sh'或'/bin/sh</code>)</li>
+<li>Bourne Again Shell(<code>/bin/bash</code>)</li>
+<li>C Shell(<code>/usr/bin/csh</code>)</li>
+<li>K Shell(<code>/usr/bin/ksh</code>)</li>
+<li>zsh</li>
+<li>...<br>
+Linux系统中一般默认使用bash，所以接下来讲解bash中的语法。<br>
+文件开头需要写<code>#! /bin/bash</code>，指明bash为脚本解释器。</li>
+</ul>
+<h2 id="学习技巧">学习技巧</h2>
+<p>不要死记硬背，遇到含糊不清的地方，可以在AC Terminal里实际运行一遍。</p>
+<h2 id="运行方式">运行方式</h2>
+<p>作为可执行文件</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh  # 使脚本具有可执行权限
+acs@9e0ebfcd82d7:~$ ./test.sh  # 当前路径下执行
+Hello World!  # 脚本输出
+acs@9e0ebfcd82d7:~$ /home/acs/test.sh  # 绝对路径下执行
+Hello World!  # 脚本输出
+acs@9e0ebfcd82d7:~$ ~/test.sh  # 家目录路径下执行
+Hello World!  # 脚本输出
+</code></pre>
+<p>用解释器执行</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ bash test.sh
+Hello World!  # 脚本输出
+</code></pre>
+<h2 id = "2">2.注释<h2>
+<h1 id="2注释">2.注释</h1>
+<h2 id="单行注释">单行注释</h2>
+<p>每行中<code>#</code>之后的内容均是注释。</p>
+<pre><code class="language-txt"># 这是一行注释
+echo 'Hello World'  #  这也是注释
+</code></pre>
+<h2 id="多行注释">多行注释</h2>
+<p>格式：</p>
+<pre><code class="language-txt">:&lt;&lt;EOF
+第一行注释
+第二行注释
+第三行注释
+EOF
+</code></pre>
+<p>其中<code>EOF</code>可以换成其它任意字符串。例如：</p>
+<pre><code class="language-txt">:&lt;&lt;abc
+第一行注释
+第二行注释
+第三行注释
+abc
+
+:&lt;&lt;!
+第一行注释
+第二行注释
+第三行注释
+!
+</code></pre>
+<h2 id = "3">3.变量<h2>
+<h1 id="3变量">3.变量</h1>
+<h2 id="定义变量">定义变量</h2>
+<p>定义变量，不需要加<code>$</code>符号，例如：</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[随便写写题]]></title>
         <id>https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/</id>
         <link href="https://zzulihrs.github.io/post/sui-bian-xie-xie-ti/">
         </link>
         <updated>2022-01-02T07:11:11.000Z</updated>
-        <content type="html"><![CDATA[<p>[TOC]</p>
-<h1 id="20220102">2022/01/02</h1>
+        <content type="html"><![CDATA[<ul>
+<li>2022/01/02<br>
+<a href="#1.1">leetcode第274周赛D 5970.参加会议的最多员工数</a><br>
+<a href="#1.2">cf Good Bye 2021 D. Keep the Average High</a></li>
+<li>2022/01/03<br>
+<a href="#2.1">cf edu120 D. Shuffle</a><br>
+<a href="#2.2">cf Hello 2022 A. Stable Arrangement of Rooks</a><br>
+<a href="#2.3">cf Hello 2022 B. Integers Shop</a></li>
+</ul>
+<h2 id = "1.1"><h2>
+# 2022/01/02
 <h2 id="5970-参加会议的最多员工数"><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></h2>
 <p>leetcode第274周赛D题</p>
 <p>挺有意思的题</p>
@@ -125,6 +212,7 @@ signed main()
         sol();
 }
 </code></pre>
+<h2 id = "1.2"><h2>
 <h2 id="d-keep-the-average-high"><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></h2>
 <p>思路：无脑dp，同时记录选择或不选的<strong><strong>最大长度</strong></strong>和<strong><strong>最小sum(最坏情况)</strong></strong></p>
 <p>代码：</p>
@@ -194,6 +282,7 @@ signed main()
 
 </code></pre>
 <h1 id="20220103">2022/01/03</h1>
+<h2 id="2.1"><h2>
 <h2 id="d-shuffle"><a href="https://codeforces.com/problemset/problem/1622/D">D. Shuffle</a></h2>
 <p>题意：对01串进行操作：取其中1的个数为k的连续子串，将这个子串重新排列。问至少一次操作后的01串有多少种情况</p>
 <p>思路：</p>
@@ -294,6 +383,122 @@ void sol()
 signed main()
 {	
 	init();
+        sol();
+}
+</code></pre>
+<h2 id = "2.2"><h2>
+<h2 id="a-stable-arrangement-of-rooks"><a href="https://codeforces.com/contest/1621/problem/A">A. Stable Arrangement of Rooks</a></h2>
+<p>题意：在n*n的棋盘上放置m个车，要求车移动到相邻的四个位置也不会与其他的车冲突，车类似于象棋中的车<br>
+思路：对角线上放置，且在对角线要隔着一个，防止冲突</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 5100;
+const int mod = 998244353;
+int n, m;
+char s[M][M];
+
+void sol()
+{
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for(int i = 0; i &lt; n; ++i) {
+		for(int j = 0; j &lt; n; ++j) s[i][j] = '.';
+		s[i][n] = '\0';
+	}
+	if(n+1 &lt; 2*m) {
+		puts(&quot;-1&quot;);
+		return ;
+	}
+	for(int i = 0; i &lt; m; ++i)
+		s[i*2][i*2] = 'R';
+	for(int i = 0; i &lt; n; ++i)
+		puts(s[i]);
+}
+signed main()
+{	
+    int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
+        sol();
+}
+</code></pre>
+<h2 id = "2.3"><h2>
+<p><a href="https://codeforces.com/contest/1621/problem/B">B. Integers Shop</a><br>
+思路：取<code>两端区间的最小值的和</code>  <code>包含所有数字区间的最小的值</code>两者的最小值</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x7f7f7f7f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 5100;
+const int mod = 998244353;
+
+int n, m;
+int l[N], r[N], c[N];
+/*
+左端最小的区间，右端最大的区间
+*/
+
+void sol()
+{
+	scanf(&quot;%d&quot;, &amp;n);
+	int L = 1, R = 1;
+
+	int temp = 1, ans = INF;
+	for(int i = 1; i &lt;= n; ++i) {
+		scanf(&quot;%d%d%d&quot;, &amp;l[i], &amp;r[i], &amp;c[i]);
+		if(l[L] &gt; l[i]) L = i;
+		else if(l[L]==l[i]&amp;&amp;c[L]&gt;c[i]) L = i;
+		else if(l[L]==l[i]&amp;&amp;c[L]==c[i]&amp;&amp;r[L]&lt;r[i]) L = i;
+
+		if(r[R] &lt; r[i]) R = i;
+		else if(r[R]==r[i]&amp;&amp;c[R]&gt;c[i]) R = i;
+		else if(r[R]==r[i]&amp;&amp;c[R]==c[i]&amp;&amp;l[L]&gt;l[i]) R = i;
+
+		if(l[i]==l[L]&amp;&amp;r[i]==r[R]) {
+			if(l[i]==l[temp]&amp;&amp;r[i]==r[temp]&amp;&amp;c[i]&lt;=c[temp])
+				temp = i, ans = c[i]; 
+			if(l[i]!=l[temp]||r[i]!=r[temp])
+				temp = i, ans = c[i];
+		}
+		if(l[temp]!=l[L]||r[temp]!=r[R]) ans = INF;
+
+		printf(&quot;%d\n&quot;, min(ans, c[L]+c[R]));
+	}
+}
+signed main()
+{	
+    int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
         sol();
 }
 </code></pre>

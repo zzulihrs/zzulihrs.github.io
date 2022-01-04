@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641216893537">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641265925635">
 <link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
 
 
@@ -18,16 +18,13 @@
 
 
 
-    <meta name="description" content="[TOC]
+    <meta name="description" content="
 2022/01/02
-5970. 参加会议的最多员工数
-leetcode第274周赛D题
-挺有意思的题
-思路：
-两种情况
-1）A, B互相喜欢，两个人的追随者都可以放上，找出所有符合条件的情况
-2）最大环，只能放一个
-取两种情况..." />
+leetcode第274周赛D 5970.参加会议的最多员工数
+cf Good Bye 2021 D. Keep the Average High
+2022/01/03
+cf edu120 D. Shuffle
+cf..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -37,7 +34,7 @@ leetcode第274周赛D题
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zzulihrs.github.io">
-        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641216893537" class="site-logo">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641265925635" class="site-logo">
         <h1 class="site-title">blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -103,8 +100,17 @@ leetcode第274周赛D题
             <div class="post-date">2022-01-02</div>
             
             <div class="post-content" v-pre>
-              <p>[TOC]</p>
-<h1 id="20220102">2022/01/02</h1>
+              <ul>
+<li>2022/01/02<br>
+<a href="#1.1">leetcode第274周赛D 5970.参加会议的最多员工数</a><br>
+<a href="#1.2">cf Good Bye 2021 D. Keep the Average High</a></li>
+<li>2022/01/03<br>
+<a href="#2.1">cf edu120 D. Shuffle</a><br>
+<a href="#2.2">cf Hello 2022 A. Stable Arrangement of Rooks</a><br>
+<a href="#2.3">cf Hello 2022 B. Integers Shop</a></li>
+</ul>
+<h2 id = "1.1"><h2>
+# 2022/01/02
 <h2 id="5970-参加会议的最多员工数"><a href="https://leetcode-cn.com/contest/weekly-contest-274/problems/maximum-employees-to-be-invited-to-a-meeting/">5970. 参加会议的最多员工数</a></h2>
 <p>leetcode第274周赛D题</p>
 <p>挺有意思的题</p>
@@ -212,6 +218,7 @@ signed main()
         sol();
 }
 </code></pre>
+<h2 id = "1.2"><h2>
 <h2 id="d-keep-the-average-high"><a href="https://codeforces.com/contest/1616/problem/D">D. Keep the Average High</a></h2>
 <p>思路：无脑dp，同时记录选择或不选的<strong><strong>最大长度</strong></strong>和<strong><strong>最小sum(最坏情况)</strong></strong></p>
 <p>代码：</p>
@@ -281,6 +288,7 @@ signed main()
 
 </code></pre>
 <h1 id="20220103">2022/01/03</h1>
+<h2 id="2.1"><h2>
 <h2 id="d-shuffle"><a href="https://codeforces.com/problemset/problem/1622/D">D. Shuffle</a></h2>
 <p>题意：对01串进行操作：取其中1的个数为k的连续子串，将这个子串重新排列。问至少一次操作后的01串有多少种情况</p>
 <p>思路：</p>
@@ -381,6 +389,122 @@ void sol()
 signed main()
 {	
 	init();
+        sol();
+}
+</code></pre>
+<h2 id = "2.2"><h2>
+<h2 id="a-stable-arrangement-of-rooks"><a href="https://codeforces.com/contest/1621/problem/A">A. Stable Arrangement of Rooks</a></h2>
+<p>题意：在n*n的棋盘上放置m个车，要求车移动到相邻的四个位置也不会与其他的车冲突，车类似于象棋中的车<br>
+思路：对角线上放置，且在对角线要隔着一个，防止冲突</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x3f3f3f3f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 5100;
+const int mod = 998244353;
+int n, m;
+char s[M][M];
+
+void sol()
+{
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for(int i = 0; i &lt; n; ++i) {
+		for(int j = 0; j &lt; n; ++j) s[i][j] = '.';
+		s[i][n] = '\0';
+	}
+	if(n+1 &lt; 2*m) {
+		puts(&quot;-1&quot;);
+		return ;
+	}
+	for(int i = 0; i &lt; m; ++i)
+		s[i*2][i*2] = 'R';
+	for(int i = 0; i &lt; n; ++i)
+		puts(s[i]);
+}
+signed main()
+{	
+    int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
+        sol();
+}
+</code></pre>
+<h2 id = "2.3"><h2>
+<p><a href="https://codeforces.com/contest/1621/problem/B">B. Integers Shop</a><br>
+思路：取<code>两端区间的最小值的和</code>  <code>包含所有数字区间的最小的值</code>两者的最小值</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x7f7f7f7f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 5100;
+const int mod = 998244353;
+
+int n, m;
+int l[N], r[N], c[N];
+/*
+左端最小的区间，右端最大的区间
+*/
+
+void sol()
+{
+	scanf(&quot;%d&quot;, &amp;n);
+	int L = 1, R = 1;
+
+	int temp = 1, ans = INF;
+	for(int i = 1; i &lt;= n; ++i) {
+		scanf(&quot;%d%d%d&quot;, &amp;l[i], &amp;r[i], &amp;c[i]);
+		if(l[L] &gt; l[i]) L = i;
+		else if(l[L]==l[i]&amp;&amp;c[L]&gt;c[i]) L = i;
+		else if(l[L]==l[i]&amp;&amp;c[L]==c[i]&amp;&amp;r[L]&lt;r[i]) L = i;
+
+		if(r[R] &lt; r[i]) R = i;
+		else if(r[R]==r[i]&amp;&amp;c[R]&gt;c[i]) R = i;
+		else if(r[R]==r[i]&amp;&amp;c[R]==c[i]&amp;&amp;l[L]&gt;l[i]) R = i;
+
+		if(l[i]==l[L]&amp;&amp;r[i]==r[R]) {
+			if(l[i]==l[temp]&amp;&amp;r[i]==r[temp]&amp;&amp;c[i]&lt;=c[temp])
+				temp = i, ans = c[i]; 
+			if(l[i]!=l[temp]||r[i]!=r[temp])
+				temp = i, ans = c[i];
+		}
+		if(l[temp]!=l[L]||r[temp]!=r[R]) ans = INF;
+
+		printf(&quot;%d\n&quot;, min(ans, c[L]+c[R]));
+	}
+}
+signed main()
+{	
+    int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
         sol();
 }
 </code></pre>
