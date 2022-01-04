@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-04T03:13:23.682Z</updated>
+    <updated>2022-01-04T07:58:39.536Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -86,6 +86,11 @@ abc
 <h1 id="3变量">3.变量</h1>
 <h2 id="定义变量">定义变量</h2>
 <p>定义变量，不需要加<code>$</code>符号，例如：</p>
+<pre><code class="language-txt">name1='yxc'  # 单引号定义字符串
+name2=&quot;yxc&quot;  # 双引号定义字符串
+name3=yxc    # 也可以不加引号，同样表示字符串
+</code></pre>
+<p>##使用变量</p>
 ]]></content>
     </entry>
     <entry>
@@ -737,6 +742,30 @@ homework 2 test 可以评测lesson_2的所有作业
         </link>
         <updated>2022-01-01T07:03:51.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1NJ411J79W">狂神说</a></p>
+<h3 id="什么是数据库">什么是数据库</h3>
+<p>数据库(DB, DataBase)</p>
+<p>概念：数据仓库，软件，安装在os上！SQL可以存储大量数据, 500万</p>
+<p>作用：存储数据，管理数据</p>
+<h3 id="数据库分类">数据库分类</h3>
+<p>关系型数据库：（SQL）</p>
+<ul>
+<li>MYSQL, Oracle, sql Server, DB2, SQllit</li>
+<li>通过表和表之间，行和行之间的关系进行数据的存储，学员信息表，考勤表</li>
+</ul>
+<p>非关系型数据库：(NoSQL) Not only</p>
+<ul>
+<li>Redits, MongDB</li>
+<li>非关系型数据库，对象存储，通过对象的自身的属性来决定</li>
+</ul>
+<h4 id="dbms数据库管理系统">DBMS(数据库管理系统)：</h4>
+<ul>
+<li>数据库的管理软件，科学有效管理我们的数据，维护和获取数据</li>
+<li>MYSQL</li>
+</ul>
+<h3 id="mysql介绍">MYSQL介绍</h3>
+<p>最好的关系型数据库</p>
+<p>开源软件</p>
+<p>适用于中小</p>
 ]]></content>
     </entry>
     <entry>
