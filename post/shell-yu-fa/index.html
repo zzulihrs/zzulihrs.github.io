@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641283117336">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641287478734">
 <link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
 
 
@@ -19,16 +19,20 @@
 
 
     <meta name="description" content="
-1.shell语法
+1. shell语法
 2.注释
 3.变量
-
-1.shell语法
-# 1. shell语法
-## 概论
-shell是我们通过命令行与操作系统沟通的语言。
-shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。
-AC ..." />
+4. 默认变量
+5.数组
+6.expr命令
+7.read命令
+8.echo命令
+9.printf命令
+10. test命令与判断符号[]
+11.判断语句
+12.循环语句
+13.函数
+14.exit..." />
     <meta name="keywords" content="Linux基础课" />
   </head>
   <body>
@@ -38,7 +42,7 @@ AC ..." />
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zzulihrs.github.io">
-        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641283117336" class="site-logo">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641287478734" class="site-logo">
         <h1 class="site-title">blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -91,12 +95,7 @@ AC ..." />
       fw
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-// 侧边栏目录
-// https://blog-static.cnblogs.com/files/douzujun/marvin.nav.my1502.css
-<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link href="https://blog-static.cnblogs.com/files/douzujun/marvin.nav.my1502.css" rel="stylesheet">
-<script type="text/javascript" src="https://blog-static.cnblogs.com/files/douzujun/marvin.nav.my1502.js"></script> | <a class="rss" href="https://zzulihrs.github.io/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zzulihrs.github.io/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
@@ -109,81 +108,1108 @@ AC ..." />
             <div class="post-date">2022-01-03</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li><a href="#1">1.shell语法</a></li>
-<li><a href="#2">2.注释</a></li>
-<li><a href="#3">3.变量</a></li>
+              <p><ul class="markdownIt-TOC">
+<li><a href="#1-shell%E8%AF%AD%E6%B3%95"><strong>1. shell语法</strong></a></li>
+<li><a href="#2%E6%B3%A8%E9%87%8A"><strong>2.注释</strong></a></li>
+<li><a href="#3%E5%8F%98%E9%87%8F"><strong>3.变量</strong></a></li>
+<li><a href="#4-%E9%BB%98%E8%AE%A4%E5%8F%98%E9%87%8F"><strong>4. 默认变量</strong></a></li>
+<li><a href="#5%E6%95%B0%E7%BB%84"><strong>5.数组</strong></a></li>
+<li><a href="#6expr%E5%91%BD%E4%BB%A4"><strong>6.expr命令</strong></a></li>
+<li><a href="#7read%E5%91%BD%E4%BB%A4"><strong>7.read命令</strong></a></li>
+<li><a href="#8echo%E5%91%BD%E4%BB%A4"><strong>8.echo命令</strong></a></li>
+<li><a href="#9printf%E5%91%BD%E4%BB%A4"><strong>9.printf命令</strong></a></li>
+<li><a href="#10-test%E5%91%BD%E4%BB%A4%E4%B8%8E%E5%88%A4%E6%96%AD%E7%AC%A6%E5%8F%B7"><strong>10. test命令与判断符号[]</strong></a></li>
+<li><a href="#11%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5"><strong>11.判断语句</strong></a></li>
+<li><a href="#12%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><strong>12.循环语句</strong></a></li>
+<li><a href="#13%E5%87%BD%E6%95%B0"><strong>13.函数</strong></a></li>
+<li><a href="#14exit%E5%91%BD%E4%BB%A4"><strong>14.exit命令</strong></a></li>
+<li><a href="#15%E6%96%87%E4%BB%B6%E9%87%8D%E5%AE%9A%E5%90%91"><strong>15.文件重定向</strong></a></li>
+<li><a href="#16%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E8%84%9A%E6%9C%AC"><strong>16.引入外部脚本</strong></a></li>
 </ul>
-<h2 id = "1">1.shell语法<h2>
-# 1. shell语法
-## 概论
-shell是我们通过命令行与操作系统沟通的语言。
-<p>shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。<br>
-AC Terminal中的命令行可以看成是一个“shell脚本在逐行执行”。</p>
+</p>
+<h1 id="1-shell语法"><strong>1. shell语法</strong></h1>
+<p><strong>概论</strong></p>
+<p>shell是我们通过命令行与操作系统沟通的语言。</p>
+<p>shell脚本可以直接在命令行中执行，也可以将一套逻辑组织成一个文件，方便复用。</p>
+<p>AC Terminal中的命令行可以看成是一个“shell脚本在逐行执行”。</p>
 <p>Linux中常见的shell脚本有很多种，常见的有：</p>
 <ul>
-<li>Bourne Shell(<code>/usr/bin/sh'或'/bin/sh</code>)</li>
-<li>Bourne Again Shell(<code>/bin/bash</code>)</li>
-<li>C Shell(<code>/usr/bin/csh</code>)</li>
-<li>K Shell(<code>/usr/bin/ksh</code>)</li>
-<li>zsh</li>
-<li>...<br>
-Linux系统中一般默认使用bash，所以接下来讲解bash中的语法。<br>
-文件开头需要写<code>#! /bin/bash</code>，指明bash为脚本解释器。</li>
+<li>
+<p>Bourne Shell(<code>/usr/bin/sh'或'/bin/sh</code>)</p>
+</li>
+<li>
+<p>Bourne Again Shell(<code>/bin/bash</code>)</p>
+</li>
+<li>
+<p>C Shell(<code>/usr/bin/csh</code>)</p>
+</li>
+<li>
+<p>K Shell(<code>/usr/bin/ksh</code>)</p>
+</li>
+<li>
+<p>zsh</p>
+</li>
+<li>
+<p>...</p>
+</li>
 </ul>
-<h2 id="学习技巧">学习技巧</h2>
+<p>Linux系统中一般默认使用bash，所以接下来讲解bash中的语法。</p>
+<p>文件开头需要写<code>#! /bin/bash</code>，指明bash为脚本解释器。</p>
+<p><strong>学习技巧</strong></p>
 <p>不要死记硬背，遇到含糊不清的地方，可以在AC Terminal里实际运行一遍。</p>
-<h2 id="运行方式">运行方式</h2>
+<p><strong>运行方式</strong></p>
 <p>作为可执行文件</p>
-<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh  # 使脚本具有可执行权限
+<pre><code class="language-shell">
+acs@9e0ebfcd82d7:~$ chmod +x test.sh  # 使脚本具有可执行权限
+
 acs@9e0ebfcd82d7:~$ ./test.sh  # 当前路径下执行
+
 Hello World!  # 脚本输出
+
 acs@9e0ebfcd82d7:~$ /home/acs/test.sh  # 绝对路径下执行
+
 Hello World!  # 脚本输出
+
 acs@9e0ebfcd82d7:~$ ~/test.sh  # 家目录路径下执行
+
 Hello World!  # 脚本输出
+
 </code></pre>
 <p>用解释器执行</p>
-<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ bash test.sh
+<pre><code class="language-shell">
+acs@9e0ebfcd82d7:~$ bash test.sh
+
 Hello World!  # 脚本输出
+
 </code></pre>
-<h2 id = "2">2.注释<h2>
-<h1 id="2注释">2.注释</h1>
-<h2 id="单行注释">单行注释</h2>
+<h1 id="2注释"><strong>2.注释</strong></h1>
+<p><strong>单行注释</strong></p>
 <p>每行中<code>#</code>之后的内容均是注释。</p>
-<pre><code class="language-txt"># 这是一行注释
+<pre><code class="language-shell">#这是一行注释
+
 echo 'Hello World'  #  这也是注释
 </code></pre>
-<h2 id="多行注释">多行注释</h2>
+<p><strong>多行注释</strong></p>
 <p>格式：</p>
-<pre><code class="language-txt">:&lt;&lt;EOF
+<pre><code class="language-shell">:&lt;&lt;EOF
+
 第一行注释
+
 第二行注释
+
 第三行注释
+
 EOF
 </code></pre>
 <p>其中<code>EOF</code>可以换成其它任意字符串。例如：</p>
-<pre><code class="language-txt">:&lt;&lt;abc
+<pre><code class="language-shell">:&lt;&lt;abc
+
 第一行注释
+
 第二行注释
+
 第三行注释
+
 abc
 
+
+
 :&lt;&lt;!
+
 第一行注释
+
 第二行注释
+
 第三行注释
+
 !
 </code></pre>
-<h2 id = "3">3.变量<h2>
-<h1 id="3变量">3.变量</h1>
-<h2 id="定义变量">定义变量</h2>
+<h1 id="3变量"><strong>3.变量</strong></h1>
+<p><strong>定义变量</strong></p>
 <p>定义变量，不需要加<code>$</code>符号，例如：</p>
-<pre><code class="language-txt">name1='yxc'  # 单引号定义字符串
+<pre><code class="language-shell">name1='yxc'  # 单引号定义字符串
+
 name2=&quot;yxc&quot;  # 双引号定义字符串
+
 name3=yxc    # 也可以不加引号，同样表示字符串
 </code></pre>
-<p>##使用变量</p>
+<p><strong>使用变量</strong></p>
+<p>使用变量，需要加上<code>$`符号，或者`${}</code>符号。花括号是可选的，主要为了帮助解释器识别变量边界。</p>
+<pre><code class="language-shell">name=yxc
+echo $name  # 输出yxc
+echo ${name}  # 输出yxc
+echo ${name}acwing  # 输出yxcacwing
+</code></pre>
+<p><strong>只读变量</strong><br>
+使用readonly或者declare可以将变量变为只读。</p>
+<pre><code class="language-shell">name=yxc
+readonly name
+declare -r name  # 两种写法均可
+
+name=abc  # 会报错，因为此时name只读
+</code></pre>
+<p><strong>删除变量</strong></p>
+<p><code>unset</code>可以删除变量。</p>
+<pre><code class="language-shell">name=yxc
+unset name
+echo $name  # 输出空行
+</code></pre>
+<p>变量类型<br>
+1. 自定义变量（局部变量）<br>
+子进程不能访问的变量</p>
+<ol start="2">
+<li>
+<p>环境变量（全局变量）<br>
+子进程可以访问的变量</p>
+<p>自定义变量改成环境变量：</p>
+</li>
+</ol>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ name=yxc  # 定义变量
+acs@9e0ebfcd82d7:~$ export name  # 第一种方法
+acs@9e0ebfcd82d7:~$ declare -x name  # 第二种方法
+</code></pre>
+<p>环境变量改为自定义变量：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ export name=yxc  # 定义环境变量
+acs@9e0ebfcd82d7:~$ declare +x name  # 改为自定义变量
+</code></pre>
+<p><strong>字符串</strong></p>
+<p>字符串可以用单引号，也可以用双引号，也可以不用引号。</p>
+<p>单引号与双引号的区别：</p>
+<ul>
+<li>单引号中的内容会原样输出，不会执行、不会取变量；</li>
+<li>双引号中的内容可以执行、可以取变量；</li>
+</ul>
+<pre><code class="language-shell">name=yxc  # 不用引号
+echo 'hello, $name \&quot;hh\&quot;'  # 单引号字符串，输出 hello, $name \&quot;hh\&quot;
+echo &quot;hello, $name \&quot;hh\&quot;&quot;  # 双引号字符串，输出 hello, yxc &quot;hh&quot;
+</code></pre>
+<p>获取字符串长度</p>
+<pre><code class="language-shell">name=&quot;yxc&quot;
+echo ${#name}  # 输出3
+</code></pre>
+<p>提取子串</p>
+<pre><code class="language-shell">name=&quot;hello, yxc&quot;
+echo ${name:0:5}  # 提取从0开始的5个字符
+</code></pre>
+<h1 id="4-默认变量"><strong>4. 默认变量</strong></h1>
+<p><strong>文件参数变量</strong><br>
+在执行shell脚本时，可以向脚本传递参数。<code>$1</code>是第一个参数，<code>$2</code>是第二个参数，以此类推。特殊的，<code>$0</code>是文件名（包含路径）。例如：</p>
+<p>创建文件<code>test.sh</code>：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+echo &quot;文件名：&quot;$0
+echo &quot;第一个参数：&quot;$1
+echo &quot;第二个参数：&quot;$2
+echo &quot;第三个参数：&quot;$3
+echo &quot;第四个参数：&quot;$4
+</code></pre>
+<p>然后执行该脚本：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh 
+acs@9e0ebfcd82d7:~$ ./test.sh 1 2 3 4
+文件名：./test.sh
+第一个参数：1
+第二个参数：2
+第三个参数：3
+第四个参数：4
+</code></pre>
+<p><strong>其它参数相关变量</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$#</code></td>
+<td>代表文件传入的参数个数，如上例中值为4</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>由所有参数构成的用空格隔开的字符串，如上例中值为<code>&quot;$1 $2 $3 $4&quot;</code></td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>每个参数分别用双引号括起来的字符串，如上例中值为<code>&quot;$1&quot; &quot;$2&quot; &quot;$3&quot; &quot;$4&quot;</code></td>
+</tr>
+<tr>
+<td><code>$$</code></td>
+<td>脚本当前运行的进程ID</td>
+</tr>
+<tr>
+<td><code>$?</code></td>
+<td>上一条命令的退出状态（注意不是stdout，而是exit code）。0表示正常退出，其他值表示错误</td>
+</tr>
+<tr>
+<td><code>$(command)</code></td>
+<td>返回<code>command</code>这条命令的stdout（可嵌套）</td>
+</tr>
+<tr>
+<td>`command<code>| 返回</code>command`这条命令的stdout（不可嵌套）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="5数组"><strong>5.数组</strong></h1>
+<p>数组中可以存放多个不同类型的值，只支持一维数组，初始化时不需要指明数组大小。<br>
+数组<strong>下标从0开始</strong>。</p>
+<p><strong>定义</strong></p>
+<p>数组用小括号表示，元素之间用空格隔开。例如：</p>
+<pre><code class="language-shell">array=(1 abc &quot;def&quot; yxc)
+</code></pre>
+<p>也可以直接定义数组中某个元素的值：</p>
+<pre><code class="language-shell">array[0]=1
+array[1]=abc
+array[2]=&quot;def&quot;
+array[3]=yxc
+</code></pre>
+<p><strong>读取数组中某个元素的值</strong></p>
+<p>格式：</p>
+<pre><code class="language-shell">${array[index]}
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-shell">array=(1 abc &quot;def&quot; yxc)
+echo ${array[0]}
+echo ${array[1]}
+echo ${array[2]}
+echo ${array[3]}
+</code></pre>
+<p><strong>读取整个数组</strong><br>
+格式：</p>
+<pre><code class="language-shell">${array[@]}  # 第一种写法
+${array[*]}  # 第二种写法
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-shell">array=(1 abc &quot;def&quot; yxc)
+
+echo ${array[@]}  # 第一种写法
+echo ${array[*]}  # 第二种写法
+</code></pre>
+<p><strong>数组长度</strong><br>
+类似于字符串</p>
+<pre><code class="language-shell">${#array[@]}  # 第一种写法
+${#array[*]}  # 第二种写法
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-shell">array=(1 abc &quot;def&quot; yxc)
+
+echo ${#array[@]}  # 第一种写法
+echo ${#array[*]}  # 第二种写法
+</code></pre>
+<h1 id="6expr命令"><strong>6.expr命令</strong></h1>
+<p><code>expr</code>命令用于求表达式的值，格式为：</p>
+<pre><code class="language-shell">expr 表达式
+</code></pre>
+<p>表达式说明：</p>
+<ul>
+<li>用空格隔开每一项</li>
+<li>用反斜杠放在shell特定的字符前面（发现表达式运行错误时，可以试试转义）</li>
+<li>对包含空格和其他特殊字符的字符串要用引号括起来</li>
+<li>expr会在<code>stdout</code>中输出结果。如果为逻辑关系表达式，则结果为真，<code>stdout</code>为1，否则为0。</li>
+<li>expr的<code>exit code</code>：如果为逻辑关系表达式，则结果为真，<code>exit code</code>为0，否则为1。</li>
+</ul>
+<p><strong>字符串表达式</strong></p>
+<ul>
+<li>
+<p><code>length STRING</code><br>
+返回<code>STRING</code>的长度</p>
+</li>
+<li>
+<p><code>index STRING CHARSET</code></p>
+<p><code>CHARSET</code>中任意单个字符在<code>STRING</code>中最前面的字符位置，下标从1开始。如果在<code>STRING</code>中完全不存在<code>CHARSET</code>中的字符，则返回0。</p>
+</li>
+<li>
+<p><code>substr STRING POSITION LENGTH</code><br>
+返回<code>STRING</code>字符串中从<code>POSITION</code>开始，长度最大为<code>LENGTH</code>的子串。如果<code>POSITION</code>或<code>LENGTH</code>为负数，0或非数值，则返回空字符串。</p>
+</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-shell">str=&quot;Hello World!&quot;
+
+echo `expr length &quot;$str&quot;`  # ``不是单引号，表示执行该命令，输出12
+echo `expr index &quot;$str&quot; aWd`  # 输出7，下标从1开始
+echo `expr substr &quot;$str&quot; 2 3`  # 输出 ell
+</code></pre>
+<p><strong>整数表达式</strong></p>
+<p><code>expr</code>支持普通的算术操作，算术表达式优先级低于字符串表达式，高于逻辑关系表达式。</p>
+<ul>
+<li><code>+ -</code><br>
+加减运算。两端参数会转换为整数，如果转换失败则报错。</li>
+</ul>
+<ul>
+<li>
+<p><code>* / %</code></p>
+<p>乘，除，取模运算。两端参数会转换为整数，如果转换失败则报错</p>
+</li>
+<li>
+<p><code>()</code> 可以该表优先级，但需要用反斜杠转义</p>
+</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-shell">a=3
+b=4
+
+echo `expr $a + $b`  # 输出7
+echo `expr $a - $b`  # 输出-1
+echo `expr $a \* $b`  # 输出12，*需要转义
+echo `expr $a / $b`  # 输出0，整除
+echo `expr $a % $b` # 输出3
+echo `expr \( $a + 1 \) \* \( $b + 1 \)`  # 输出20，值为(a + 1) * (b + 1)
+</code></pre>
+<p><strong>逻辑关系表达式</strong></p>
+<ul>
+<li>
+<p><code>|</code><br>
+如果第一个参数非空且非0，则返回第一个参数的值，否则返回第二个参数的值，但要求第二个参数的值也是非空或非0，否则返回0。如果第一个参数是非空或非0时，不会计算第二个参数。</p>
+</li>
+<li>
+<p><code>&amp;</code><br>
+如果两个参数都非空且非0，则返回第一个参数，否则返回0。如果第一个参为0或为空，则不会计算第二个参数。</p>
+</li>
+<li>
+<p><code>&lt; &lt;= = == != &gt;= &gt;</code><br>
+比较两端的参数，如果为true，则返回1，否则返回0。”==”是”=”的同义词。”expr”首先尝试将两端参数转换为整数，并做算术比较，如果转换失败，则按字符集排序规则做字符比较。</p>
+</li>
+<li>
+<p><code>()</code>可以该表优先级，但需要用反斜杠转义</p>
+</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-shell">a=3
+b=4
+
+echo `expr $a \&gt; $b`  # 输出0，&gt;需要转义
+echo `expr $a '&lt;' $b`  # 输出1，也可以将特殊字符用引号引起来
+echo `expr $a '&gt;=' $b`  # 输出0
+echo `expr $a \&lt;\= $b`  # 输出1
+
+c=0
+d=5
+
+echo `expr $c \&amp; $d`  # 输出0
+echo `expr $a \&amp; $b`  # 输出3
+echo `expr $c \| $d`  # 输出5
+echo `expr $a \| $b`  # 输出3
+</code></pre>
+<h1 id="7read命令"><strong>7.read命令</strong></h1>
+<p><code>read</code>命令用于从标准输入中读取单行数据。当读到文件结束符时，<code>exit code</code>为1，否则为0。</p>
+<p>参数说明</p>
+<ul>
+<li><code>-p</code>: 后面可以接提示信息</li>
+<li><code>-t</code>：后面跟秒数，定义输入字符的等待时间，超过等待时间后会自动忽略此命令</li>
+</ul>
+<p>实例：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ read name  # 读入name的值
+acwing yxc  # 标准输入
+acs@9e0ebfcd82d7:~$ echo $name  # 输出name的值
+acwing yxc  #标准输出
+acs@9e0ebfcd82d7:~$ read -p &quot;Please input your name: &quot; -t 30 name  # 读入name的值，等待时间30秒
+Please input your name: acwing yxc  # 标准输入
+acs@9e0ebfcd82d7:~$ echo $name  # 输出name的值
+acwing yxc  # 标准输出
+</code></pre>
+<h1 id="8echo命令"><strong>8.echo命令</strong></h1>
+<p><code>echo</code>用于输出字符串。命令格式：</p>
+<pre><code class="language-shell">echo STRING
+</code></pre>
+<p><strong>显示普通字符串显示普通字符串</strong></p>
+<pre><code class="language-shell">echo &quot;Hello AC Terminal&quot;
+echo Hello AC Terminal  # 引号可以省略
+</code></pre>
+<p><strong>显示转义字符</strong></p>
+<pre><code class="language-shell">echo &quot;\&quot;Hello AC Terminal\&quot;&quot;  # 注意只能使用双引号，如果使用单引号，则不转义
+echo \&quot;Hello AC Terminal\&quot;  # 也可以省略双引号
+</code></pre>
+<p><strong>显示变量</strong></p>
+<pre><code class="language-shell">name=yxc
+echo &quot;My name is $name&quot;  # 输出 My name is yxc
+</code></pre>
+<h1 id="9printf命令"><strong>9.printf命令</strong></h1>
+<p><code>printf</code>命令用于格式化输出，类似于<code>C/C++</code>中的<code>printf</code>函数。</p>
+<p>默认<strong>不会在字符串末尾添加换行符。</strong></p>
+<p>命令格式：</p>
+<pre><code class="language-shell">printf format-string [arguments...]
+</code></pre>
+<p><strong>用法示例</strong><br>
+脚本内容：</p>
+<pre><code class="language-shell">printf &quot;%10d.\n&quot; 123  # 占10位，右对齐
+printf &quot;%-10.2f.\n&quot; 123.123321  # 占10位，保留2位小数，左对齐
+printf &quot;My name is %s\n&quot; &quot;yxc&quot;  # 格式化输出字符串
+printf &quot;%d * %d = %d\n&quot;  2 3 `expr 2 \* 3` # 表达式的值作为参数
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">       123.
+123.12    .
+My name is yxc
+2 * 3 = 6
+</code></pre>
+<h1 id="10-test命令与判断符号"><strong>10. test命令与判断符号[]</strong></h1>
+<p><strong>逻辑运算符&amp;&amp;和||</strong></p>
+<ul>
+<li><code>&amp;&amp;</code> 表示与，<code>||</code> 表示或</li>
+<li>二者具有短路原则：<br>
+<code>expr1 &amp;&amp; expr2</code>：当<code>expr1</code>为假时，直接忽略<code>expr2</code><br>
+<code>expr1 || expr2</code>：当<code>expr1</code>为真时，直接忽略<code>expr2</code></li>
+<li>表达式的<code>exit code</code>为0，表示真；为非零，表示假。（与<code>C/C++</code>中的定义相反）</li>
+</ul>
+<p>test命令<br>
+在命令行中输入<code>man test</code>，可以查看<code>test</code>命令的用法。</p>
+<p><code>test</code>命令用于判断文件类型，以及对变量做比较。</p>
+<p><code>test</code>命令用<code>exit code</code>返回结果，而不是使用<code>stdout</code>。0表示真，非0表示假。</p>
+<p>例如：</p>
+<pre><code class="language-shell">test 2 -lt 3  # 为真，返回值为0
+echo $?  # 输出上个命令的返回值，输出0
+</code></pre>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ ls  # 列出当前目录下的所有文件
+homework  output.txt  test.sh  tmp
+acs@9e0ebfcd82d7:~$ test -e test.sh &amp;&amp; echo &quot;exist&quot; || echo &quot;Not exist&quot;
+exist  # test.sh 文件存在
+acs@9e0ebfcd82d7:~$ test -e test2.sh &amp;&amp; echo &quot;exist&quot; || echo &quot;Not exist&quot;
+Not exist  # testh2.sh 文件不存在
+</code></pre>
+<p><strong>文件类型判断</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">test -e filename  # 判断文件是否存在
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>测试参数</th>
+<th>代表意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-e</td>
+<td>文件是否存在</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>是否为文件</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>是否为目录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>文件权限判断</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">test -r filename  # 判断文件是否可读
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>测试参数</th>
+<th>代表意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-r</td>
+<td>文件是否可读</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>文件是否可写</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>文件是否可执行</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>是否为非空文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>整数间的比较</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">test $a -eq $b  # a是否等于b
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>测试参数</th>
+<th>代表意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>a是否等于b</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>a是否不等于b</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>a是否大于b</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>a是否小于b</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>a是否大于等于b</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>a是否小于等于b</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字符串比较</strong></p>
+<table>
+<thead>
+<tr>
+<th>测试参数</th>
+<th>代表意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test -z STRING</td>
+<td>判断STRING是否为空，如果为空，则返回true</td>
+</tr>
+<tr>
+<td>test -n STRING</td>
+<td>判断STRING是否非空，如果非空，则返回true（-n可以省略）</td>
+</tr>
+<tr>
+<td>test str1 == str2</td>
+<td>判断str1是否等于str2</td>
+</tr>
+<tr>
+<td>test str1 != str2</td>
+<td>判断str1是否不等于str2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>多重条件判定</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">test -r filename -a -x filename
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>测试参数</th>
+<th>代表意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>两条件是否同时成立</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>两条件是否至少一个成立</td>
+</tr>
+<tr>
+<td>!</td>
+<td>取反。如 test ! -x file，当file不可执行时，返回true</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判断符号[]</strong><br>
+<code>[]</code>与<code>test</code>用法几乎一模一样，更常用于<code>if</code>语句中。另外<code>[[]]</code>是<code>[]</code>的加强版，支持的特性更多。</p>
+<p>例如：</p>
+<pre><code class="language-shell">[ 2 -lt 3 ]  # 为真，返回值为0
+echo $?  # 输出上个命令的返回值，输出0
+</code></pre>
+<pre><code class="language-shel">acs@9e0ebfcd82d7:~$ ls  # 列出当前目录下的所有文件
+homework  output.txt  test.sh  tmp
+acs@9e0ebfcd82d7:~$ [ -e test.sh ] &amp;&amp; echo &quot;exist&quot; || echo &quot;Not exist&quot;
+exist  # test.sh 文件存在
+acs@9e0ebfcd82d7:~$ [ -e test2.sh ] &amp;&amp; echo &quot;exist&quot; || echo &quot;Not exist&quot;
+Not exist  # testh2.sh 文件不存在
+</code></pre>
+<p>注意：</p>
+<ul>
+<li><code>[]</code>内的每一项都要用空格隔开</li>
+<li>中括号内的变量，最好用双引号括起来</li>
+<li>中括号内的常数，最好用单或双引号括起来</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-shell">name=&quot;acwing yxc&quot;
+[ $name == &quot;acwing yxc&quot; ]  # 错误，等价于 [ acwing yxc == &quot;acwing yxc&quot; ]，参数太多
+[ &quot;$name&quot; == &quot;acwing yxc&quot; ]  # 正确
+</code></pre>
+<h1 id="11判断语句"><strong>11.判断语句</strong></h1>
+<p><strong>if…then形式</strong><br>
+类似于<code>C/C++</code>中的<code>if-else</code>语句。</p>
+<p><strong>单层if</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">if condition
+then
+    语句1
+    语句2
+    ...
+fi
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-shell">a=3
+b=4
+
+if [ &quot;$a&quot; -lt &quot;$b&quot; ] &amp;&amp; [ &quot;$a&quot; -gt 2 ]
+then
+    echo ${a}在范围内
+fi
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">3在范围内
+</code></pre>
+<p><strong>单层if-else</strong><br>
+命令格式</p>
+<pre><code class="language-shell">if condition
+then
+    语句1
+    语句2
+    ...
+else
+    语句1
+    语句2
+    ...
+fi
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-shell">a=3
+b=4
+
+if ! [ &quot;$a&quot; -lt &quot;$b&quot; ]
+then
+    echo ${a}不小于${b}
+else
+    echo ${a}小于${b}
+fi
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">3小于4
+</code></pre>
+<p><strong>多层if-elif-elif-else</strong><br>
+命令格式</p>
+<pre><code class="language-shell">if condition
+then
+    语句1
+    语句2
+    ...
+elif condition
+then
+    语句1
+    语句2
+    ...
+elif condition
+then
+    语句1
+    语句2
+else
+    语句1
+    语句2
+    ...
+fi
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-shell">a=4
+
+if [ $a -eq 1 ]
+then
+    echo ${a}等于1
+elif [ $a -eq 2 ]
+then
+    echo ${a}等于2
+elif [ $a -eq 3 ]
+then
+    echo ${a}等于3
+else
+    echo 其他
+fi
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">其他
+</code></pre>
+<p><strong>case…esac形式</strong><br>
+类似于<code>C/C++</code>中的<code>switch</code>语句。</p>
+<p>命令格式</p>
+<pre><code class="language-shell">case $变量名称 in
+    值1)
+        语句1
+        语句2
+        ...
+        ;;  # 类似于C/C++中的break
+    值2)
+        语句1
+        语句2
+        ...
+        ;;
+    *)  # 类似于C/C++中的default
+        语句1
+        语句2
+        ...
+        ;;
+esac
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-shell">a=4
+
+case $a in
+    1)
+        echo ${a}等于1
+        ;;  
+    2)
+        echo ${a}等于2
+        ;;  
+    3)                                                
+        echo ${a}等于3
+        ;;  
+    *)
+        echo 其他
+        ;;  
+esac
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-txt">其他
+</code></pre>
+<h1 id="12循环语句"><strong>12.循环语句</strong></h1>
+<p><strong>for…in…do…done</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">for var in val1 val2 val3
+do
+    语句1
+    语句2
+    ...
+done
+</code></pre>
+<p>示例1，输出a 2 cc，每个元素一行：</p>
+<pre><code class="language-shell">for i in a 2 cc
+do
+    echo $i
+done
+</code></pre>
+<p>示例2，输出当前路径下的所有文件名，每个文件名一行：</p>
+<pre><code class="language-shell">for file in `ls`
+do
+    echo $file
+done
+</code></pre>
+<p>示例3，输出1-10</p>
+<pre><code class="language-shell">for i in $(seq 1 10)
+do
+    echo $i
+done
+</code></pre>
+<p>示例4，使用<code>{1..10} 或者 {a..z}</code></p>
+<pre><code class="language-shell">for i in {a..z}
+do
+    echo $i
+done
+</code></pre>
+<p><strong>for ((…;…;…)) do…done</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">for ((expression; condition; expression))
+do
+    语句1
+    语句2
+done
+</code></pre>
+<p>示例，输出1-10，每个数占一行：</p>
+<pre><code class="language-shell">for ((i=1; i&lt;=10; i++))
+do
+    echo $i
+done
+</code></pre>
+<p><strong>while…do…done循环</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">while condition
+do
+    语句1
+    语句2
+    ...
+done
+</code></pre>
+<p>示例，文件结束符为<code>Ctrl+d</code>，输入文件结束符后<code>read</code>指令返回false。</p>
+<pre><code class="language-shell">while read name
+do
+    echo $name
+done
+</code></pre>
+<p><strong>until…do…done循环</strong><br>
+当条件为真时结束。</p>
+<p>命令格式：</p>
+<pre><code class="language-shell">until condition
+do
+    语句1
+    语句2
+    ...
+done
+</code></pre>
+<p>示例，当用户输入<code>yes</code>或者<code>YES</code>时结束，否则一直等待读入。</p>
+<pre><code class="language-shell">until [ &quot;${word}&quot; == &quot;yes&quot; ] || [ &quot;${word}&quot; == &quot;YES&quot; ]
+do
+    read -p &quot;Please input yes/YES to stop this program: &quot; word
+done
+</code></pre>
+<p><strong>break命令</strong><br>
+跳出当前一层循环，注意与<code>C/C++</code>不同的是：<code>break</code>不能跳出<code>case</code>语句。</p>
+<p>示例</p>
+<pre><code class="language-shell">while read name
+do
+    for ((i=1;i&lt;=10;i++))
+    do
+        case $i in
+            8)
+                break
+                ;;
+            *)
+                echo $i
+                ;;
+        esac
+    done
+done
+</code></pre>
+<p>该示例每读入非EOF的字符串，会输出一遍1-7。<br>
+该程序可以输入<code>Ctrl+d</code>文件结束符来结束，也可以直接用<code>Ctrl+c</code>杀掉该进程。</p>
+<p><strong>continue命令</strong><br>
+跳出当前循环。</p>
+<p>示例：</p>
+<pre><code class="language-shell">for ((i=1;i&lt;=10;i++))
+do
+    if [ `expr $i % 2` -eq 0 ]
+    then
+        continue
+    fi
+    echo $i
+done
+</code></pre>
+<p>该程序输出1-10中的所有奇数。</p>
+<p><strong>死循环的处理方式</strong><br>
+如果AC Terminal可以打开该程序，则输入<code>Ctrl+c</code>即可。</p>
+<p>否则可以直接关闭进程：</p>
+<ol>
+<li>使用<code>top</code>命令找到进程的PID</li>
+<li>输入<code>kill -9 PID</code>即可关掉此进程</li>
+</ol>
+<h1 id="13函数"><strong>13.函数</strong></h1>
+<p><code>bash</code>中的函数类似于<code>C/C++</code>中的函数，但<code>return</code>的返回值与<code>C/C++</code>不同，返回的是<code>exit code</code>，取值为0-255，0表示正常结束。</p>
+<p>如果想获取函数的输出结果，可以通过<code>echo</code>输出到<code>stdout</code>中，然后通过<code>$(function_name)</code>来获取<code>stdout</code>中的结果。</p>
+<p>函数的<code>return</code>值可以通过<code>$?</code>来获取。</p>
+<p>命令格式：</p>
+<pre><code class="language-shell">[function] func_name() {  # function关键字可以省略
+    语句1
+    语句2
+    ...
+}
+</code></pre>
+<p><strong>不获取 <code>return</code>值和<code>stdout</code>值</strong><br>
+示例</p>
+<pre><code class="language-shell">func() {
+    name=yxc
+    echo &quot;Hello $name&quot;
+}
+
+func
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">Hello yxc
+</code></pre>
+<p>获取 <code>return</code>值和<code>stdout</code>值<br>
+不写<code>return</code>时，默认<code>return 0</code>。</p>
+<p>示例</p>
+<pre><code class="language-shell">func() {
+    name=yxc
+    echo &quot;Hello $name&quot;
+
+    return 123
+}
+
+output=$(func)
+ret=$?
+
+echo &quot;output = $output&quot;
+echo &quot;return = $ret&quot;
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">output = Hello yxc
+return = 123
+</code></pre>
+<p><strong>函数的输入参数</strong><br>
+在函数内，<code>$1</code>表示第一个输入参数，<code>$2</code>表示第二个输入参数，依此类推。</p>
+<p>注意：函数内的<code>$0</code>仍然是文件名，而不是函数名。</p>
+<p>示例：</p>
+<pre><code class="language-shell">func() {  # 递归计算 $1 + ($1 - 1) + ($1 - 2) + ... + 0
+    word=&quot;&quot;
+    while [ &quot;${word}&quot; != 'y' ] &amp;&amp; [ &quot;${word}&quot; != 'n' ]
+    do
+        read -p &quot;要进入func($1)函数吗？请输入y/n：&quot; word
+    done
+
+    if [ &quot;$word&quot; == 'n' ]
+    then
+        echo 0
+        return 0
+    fi  
+
+    if [ $1 -le 0 ] 
+    then
+        echo 0
+        return 0
+    fi  
+
+    sum=$(func $(expr $1 - 1))
+    echo $(expr $sum + $1)
+}
+
+echo $(func 10)
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">55
+</code></pre>
+<p><strong>函数内的局部变量</strong><br>
+可以在函数内定义局部变量，作用范围仅在当前函数内。</p>
+<p>可以在递归函数中定义局部变量。</p>
+<p>命令格式：</p>
+<pre><code class="language-shell">local 变量名=变量值
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+func() {
+    local name=yxc
+    echo $name
+}
+func
+
+echo $name
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-shell">yxc
+
+</code></pre>
+<p>第一行为函数内的name变量，第二行为函数外调用name变量，会发现此时该变量不存在。</p>
+<h1 id="14exit命令"><strong>14.exit命令</strong></h1>
+<p><code>exit</code>命令用来退出当前shell进程，并返回一个退出状态；使用<code>$?</code>可以接收这个退出状态。</p>
+<p><code>exit</code>命令可以接受一个整数值作为参数，代表退出状态。如果不指定，默认状态值是 0。</p>
+<p><code>exit</code>退出状态只能是一个介于 0~255 之间的整数，其中只有 0 表示成功，其它值都表示失败。</p>
+<p>示例：</p>
+<p>创建脚本<code>test.sh</code>，内容如下：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+if [ $# -ne 1 ]  # 如果传入参数个数等于1，则正常退出；否则非正常退出。
+then
+    echo &quot;arguments not valid&quot;
+    exit 1
+else
+    echo &quot;arguments valid&quot;
+    exit 0
+fi
+</code></pre>
+<p>执行该脚本：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh 
+acs@9e0ebfcd82d7:~$ ./test.sh acwing
+arguments valid
+acs@9e0ebfcd82d7:~$ echo $?  # 传入一个参数，则正常退出，exit code为0
+0
+acs@9e0ebfcd82d7:~$ ./test.sh 
+arguments not valid
+acs@9e0ebfcd82d7:~$ echo $?  # 传入参数个数不是1，则非正常退出，exit code为1
+1
+</code></pre>
+<h1 id="15文件重定向"><strong>15.文件重定向</strong></h1>
+<p>每个进程默认打开3个文件描述符：</p>
+<ul>
+<li><code>stdin</code>标准输入，从命令行读取数据，文件描述符为0</li>
+<li><code>stdout</code>标准输出，向命令行输出数据，文件描述符为1</li>
+<li><code>stderr</code>标准错误输出，向命令行输出数据，文件描述符为2</li>
+</ul>
+<p>可以用文件重定向将这三个文件重定向到其他文件中。</p>
+<p><strong>重定向命令列表</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>command &gt; file</code></td>
+<td>将<code>stdout</code>重定向到<code>file</code>中</td>
+</tr>
+<tr>
+<td><code>command &lt; file</code></td>
+<td>将<code>stdin</code>重定向到<code>file</code>中</td>
+</tr>
+<tr>
+<td><code>command &gt;&gt; file</code></td>
+<td>将<code>stdout</code>以追加方式重定向到<code>file</code>中</td>
+</tr>
+<tr>
+<td><code>command n&gt; file</code></td>
+<td>将文件描述符<code>n</code>重定向到<code>file</code>中</td>
+</tr>
+<tr>
+<td><code>command n&gt;&gt; file</code></td>
+<td>将文件描述符<code>n</code>以追加方式重定向到<code>file</code>中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>输入和输出重定向</strong></p>
+<pre><code class="language-shell">echo -e &quot;Hello \c&quot; &gt; output.txt  # 将stdout重定向到output.txt中
+echo &quot;World&quot; &gt;&gt; output.txt  # 将字符串追加到output.txt中
+
+read str &lt; output.txt  # 从output.txt中读取字符串
+
+echo $str  # 输出结果：Hello World
+</code></pre>
+<p><strong>同时重定向stdin和stdout</strong><br>
+创建bash脚本：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+read a
+read b
+
+echo $(expr &quot;$a&quot; + &quot;$b&quot;)
+</code></pre>
+<p>创建input.txt，里面的内容为：</p>
+<pre><code class="language-shell">3
+4
+</code></pre>
+<p>执行命令：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test.sh  # 添加可执行权限
+acs@9e0ebfcd82d7:~$ ./test.sh &lt; input.txt &gt; output.txt  # 从input.txt中读取内容，将输出写入output.txt中
+acs@9e0ebfcd82d7:~$ cat output.txt  # 查看output.txt中的内容
+7
+</code></pre>
+<h1 id="16引入外部脚本"><strong>16.引入外部脚本</strong></h1>
+<p>类似于<code>C/C++</code>中的<code>include</code>操作，<code>bash</code>也可以引入其他文件中的代码。</p>
+<p>语法格式：</p>
+<pre><code class="language-shell">. filename  # 注意点和文件名之间有一个空格
+
+或
+
+source filename
+</code></pre>
+<p><strong>示例</strong><br>
+创建<code>test1.sh</code>，内容为：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+name=yxc  # 定义变量name
+</code></pre>
+<p>然后创建<code>test2.sh</code>，内容为：</p>
+<pre><code class="language-shell">#! /bin/bash
+
+source test1.sh # 或 . test1.sh
+
+echo My name is: $name  # 可以使用test1.sh中的变量
+</code></pre>
+<p>执行命令：</p>
+<pre><code class="language-shell">acs@9e0ebfcd82d7:~$ chmod +x test2.sh 
+acs@9e0ebfcd82d7:~$ ./test2.sh 
+My name is: yxc
+</code></pre>
 
             </div>
             
