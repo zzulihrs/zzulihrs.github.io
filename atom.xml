@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-04T16:09:31.577Z</updated>
+    <updated>2022-01-05T14:58:00.228Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -46,6 +46,15 @@ type ls # ls is aliased to ‘ls –color+auto’<br>
 6、字符串中，不加引号和双引号效果相同<br>
 7、区分<code>``和单引号'</code>在expr命令中的区别<br>
 8、查看权限 'ls -l test.sh'</p>
+<p>小技巧：如何将服务器中的文件整体复制出来？</p>
+<ol>
+<li>退出<code>tmux</code></li>
+<li><code>cat filename</code>：展示<code>filename</code>的文件内容</li>
+<li>鼠标选中文本开头的若干字符</li>
+<li>用滚轮滑到文件结尾</li>
+<li>按住<code>Shift</code>，同时鼠标点击文件结尾，此时会选中文件所有内容</li>
+<li>Windows/Linux下，按<code>Ctrl + insert</code>可以复制全文；Mac下，按<code>Command + c</code>可以复制全文。</li>
+</ol>
 <h1 id="1-shell语法"><strong>1. shell语法</strong></h1>
 <p><strong>概论</strong></p>
 <p>shell是我们通过命令行与操作系统沟通的语言。</p>
