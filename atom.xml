@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-05T15:01:12.217Z</updated>
+    <updated>2022-01-06T11:09:54.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -1159,6 +1159,8 @@ My name is: yxc
 <a href="#2.1">cf edu120 D. Shuffle</a><br>
 <a href="#2.2">cf Hello 2022 A. Stable Arrangement of Rooks</a><br>
 <a href="#2.3">cf Hello 2022 B. Integers Shop</a></li>
+<li>2022/01/06<br>
+<a href="https://pintia.cn/problem-sets/1478580278661283840/problems/1478580509620633600">第八届蓝桥杯 A组 正则问题</a>(#3.1)</li>
 </ul>
 <h2 id = "1.1"><h2>
 # 2022/01/02
@@ -1556,6 +1558,98 @@ void sol()
 signed main()
 {	
     int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
+        sol();
+}
+</code></pre>
+<h2 id = "3.1"><正则表达式><h2>
+<p>额，数据有问题，()数量都不想等</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+#define INF 0x7f7f7f7f
+#define LLINF 0x3f3f3f3f3f3f3f3f
+#define eps 1e-10
+#define pb push_back
+#define fi first
+#define se second
+#define SZ(x) (int)x.size()
+#define ALL(x) x.begin(), x.end()
+#define db1(x) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl
+#define db2(x, y) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &lt;&lt; #y &lt;&lt; &quot; = &quot; &lt;&lt; y &lt;&lt; endl
+#define gg cout &lt;&lt; &quot;---------QAQ--------\n&quot;
+#define MEM(a, b) memset(a, b, sizeof(a))
+//#define int long long
+#define IOS ios::sync_with_stdio(false),cin.tie(NULL);
+
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int, int&gt; pii;
+typedef pair&lt;pii, int&gt; piii;
+const int N = 2e5+10, M = 11000;
+const int mod = 998244353;
+
+int n, m;
+/*
+a|b 匹配a或b
+那么找最大的就行
+记录每个(的)位置，|的下一个|位置
+递归处理
+*/
+char s[M];
+int pos[M];
+int nex[M];
+int dp[M];
+
+int dfs(int l, int r)
+{
+	if(l &gt; r) return 0;
+	db2(l, r);
+	if(~dp[l-1]) return dp[l-1];
+	int ans = 0;
+	for(int i = l; i &lt;= r; ++i) {
+		if(s[i] == 'x') ans++;
+		else if(s[i] == '(') {
+			ans += dfs(i+1, pos[i]-1);
+			i = pos[i];
+			db1(pos[i]);
+		}
+		else {
+			int t = dfs(i+1, r);
+			ans = max(ans, t);
+			i = r;
+		}
+	}
+	return dp[l-1]=ans;
+}
+
+void sol()
+{
+	MEM(dp, -1);
+	scanf(&quot;%s&quot;, s+1);
+	n = strlen(s+1);
+    if(n&gt;100) return ;
+	stack&lt;int&gt; fh;
+
+	int a = 0, b = 0;
+	for(int i = 1; i &lt;= n; ++i) {
+		if(s[i] == '(') a++;
+		else if(s[i] == ')') b++;
+		if(s[i] == '(') fh.push(i);
+		else if(s[i] == ')') pos[fh.top()] = i, fh.pop();
+	}
+	db2(a, b);
+	return ;
+
+	int temp = n+1;
+	for(int i = n; i &gt;= 1; --i) {
+		if(s[i] == '|') nex[i] = temp, temp = i;
+	}
+
+	int ans = dfs(1, n);
+
+	printf(&quot;%d\n&quot;, ans);
+}
+signed main()
+{	
+    //int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
         sol();
 }
 </code></pre>
