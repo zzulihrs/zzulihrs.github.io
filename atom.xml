@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-06T11:14:39.082Z</updated>
+    <updated>2022-01-06T13:04:14.926Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -10,6 +10,74 @@
     <logo>https://zzulihrs.github.io/images/avatar.png</logo>
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, blog</rights>
+    <entry>
+        <title type="html"><![CDATA[ssh]]></title>
+        <id>https://zzulihrs.github.io/post/ssh/</id>
+        <link href="https://zzulihrs.github.io/post/ssh/">
+        </link>
+        <updated>2022-01-06T12:47:45.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="ssh登录">ssh登录</h1>
+<p><strong>基本用法</strong><br>
+远程登录服务器：</p>
+<pre><code class="language-shell">ssh user@hostname
+</code></pre>
+<ul>
+<li><code>user</code>: 用户名</li>
+<li><code>hostname</code>: IP地址或域名<br>
+第一次登录时会提示：</li>
+</ul>
+<pre><code class="language-shell">The authenticity of host '123.57.47.211 (123.57.47.211)' can't be established.
+ECDSA key fingerprint is SHA256:iy237yysfCe013/l+kpDGfEG9xxHxm0dnxnAbJTPpG8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</code></pre>
+<p>输入<code>yes</code>，然后回车即可。<br>
+这样会将该服务器的信息记录在<code>~/.ssh/known_hosts</code>文件中。</p>
+<p>然后输入密码即可登录到远程服务器中。</p>
+<p>默认登录端口号为22。如果想登录某一特定端口：</p>
+<pre><code class="language-shell">ssh user@hostname -p 22
+</code></pre>
+<p><strong>配置文件</strong><br>
+创建文件<code>~/.ssh/config</code>。</p>
+<p>然后在文件中输入：</p>
+<pre><code class="language-shell">Host myserver1
+    HostName IP地址或域名
+    User 用户名
+
+Host myserver2
+    HostName IP地址或域名
+    User 用户名
+</code></pre>
+<p>之后再使用服务器时，可以直接使用别名<code>myserver1</code>、<code>myserver2</code>。<br>
+<strong>密钥登录</strong><br>
+创建密钥：</p>
+<pre><code class="language-shell">ssh-keygen
+</code></pre>
+<p>然后一直回车即可。</p>
+<p>执行结束后，<code>~/.ssh/</code>目录下会多两个文件：</p>
+<p><code>id_rsa</code>：私钥<br>
+<code>id_rsa.pub</code>：公钥<br>
+之后想免密码登录哪个服务器，就将公钥传给哪个服务器即可。</p>
+<p>例如，想免密登录<code>myserver</code>服务器。则将公钥中的内容，复制到<code>myserver</code>中的<code>~/.ssh/authorized_keys</code>文件里即可。</p>
+<p>也可以使用如下命令一键添加公钥：</p>
+<pre><code class="language-shell">ssh-copy-id myserver
+</code></pre>
+<p><strong>执行命令</strong><br>
+命令格式：</p>
+<pre><code class="language-shell">ssh user@hostname command
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-shell">ssh user@hostname ls -a
+</code></pre>
+<p>或者</p>
+<pre><code class="language-shell"># 单引号中的$i可以求值
+ssh myserver 'for ((i = 0; i &lt; 10; i ++ )) do echo $i; done'
+</code></pre>
+<p>或者</p>
+<pre><code class="language-shell"># 双引号中的$i不可以求值
+ssh myserver &quot;for ((i = 0; i &lt; 10; i ++ )) do echo $i; done&quot;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[shell语法]]></title>
         <id>https://zzulihrs.github.io/post/shell-yu-fa/</id>
