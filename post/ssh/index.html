@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641476018273">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641651034148">
 <link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
 
 
@@ -38,7 +38,7 @@ The authenticity of host '123.57.47.211 ..." />
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zzulihrs.github.io">
-        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641476018273" class="site-logo">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641651034148" class="site-logo">
         <h1 class="site-title">blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -171,6 +171,9 @@ ssh myserver &quot;for ((i = 0; i &lt; 10; i ++ )) do echo $i; done&quot;
 </code></pre>
 <p>将<code>source</code>路径下的文件复制到<code>destination</code>中</p>
 <p>一次复制多个文件：</p>
+<pre><code class="language-shell">scp source1 source2 destination
+</code></pre>
+<p>复制文件夹：</p>
 <pre><code class="language-shell">scp -r ~/tmp myserver:/home/acs/
 </code></pre>
 <p>将本地家目录中的<code>tmp</code>文件夹复制到<code>myserver</code>服务器中的<code>/home/acs/</code>目录下。</p>

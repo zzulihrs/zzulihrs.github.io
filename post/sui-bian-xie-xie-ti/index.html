@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641476018273">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1641651034148">
 <link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
 
 
@@ -34,7 +34,7 @@ cf..." />
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zzulihrs.github.io">
-        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641476018273" class="site-logo">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1641651034148" class="site-logo">
         <h1 class="site-title">blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -109,7 +109,9 @@ cf..." />
 <a href="#2.2">cf Hello 2022 A. Stable Arrangement of Rooks</a><br>
 <a href="#2.3">cf Hello 2022 B. Integers Shop</a></li>
 <li>2022/01/06<br>
-<a href="https://pintia.cn/problem-sets/1478580278661283840/problems/1478580509620633600">第八届蓝桥杯 A组 正则问题</a>(#3.1)</li>
+<a href="#3.1">第八届蓝桥杯 A组 正则问题</a></li>
+<li>2022/01<br>
+<a href="#4.1">leetcod第68场双周赛 2116. 判断一个括号字符串是否有效</a></li>
 </ul>
 <h2 id = "1.1"><h2>
 # 2022/01/02
@@ -510,7 +512,7 @@ signed main()
         sol();
 }
 </code></pre>
-<h2 id = "3.1"><正则表达式><h2>
+<h2 id = "3.1">正则表达式<h2>
 <p>额，数据有问题，()数量都不想等</p>
 <pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
 #define INF 0x7f7f7f7f
@@ -601,6 +603,37 @@ signed main()
     //int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
         sol();
 }
+</code></pre>
+<h2 id = "4.1"><h2>
+<p><a href="https://leetcode-cn.com/problems/check-if-a-parentheses-string-can-be-valid/">2116. 判断一个括号字符串是否有效</a></p>
+<pre><code class="language-c++">class Solution {
+public:
+	int n;
+    bool canBeValid(string s, string lock) {
+  		 n = SZ(s);
+  		 int l = 0, r = 0;
+  		 if(n%2) return false;
+
+  		 for(int i = 0; i &lt; n; ++i) {
+  		 	int a;
+  		 	if(s[i] == '(') a = 1;
+  		 	else a = -1;
+
+  		 	if(lock[i] == '1') {
+  		 		if(a) r = max(0, r), l = max(0, l);
+  		 		l += a;
+  		 		r += a;
+  		 		if(r &lt; 0) return false;
+  		 	}
+  		 	else {
+  		 		l--;
+  		 		r++;
+  		 	}
+
+  		 }
+  		 return l&lt;=0&amp;&amp;r&gt;=0;
+    }
+}T;
 </code></pre>
 
             </div>

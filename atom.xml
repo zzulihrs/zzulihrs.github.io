@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-06T13:34:29.037Z</updated>
+    <updated>2022-01-08T14:10:36.087Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -10,6 +10,61 @@
     <logo>https://zzulihrs.github.io/images/avatar.png</logo>
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, blog</rights>
+    <entry>
+        <title type="html"><![CDATA[ git]]></title>
+        <id>https://zzulihrs.github.io/post/git/</id>
+        <link href="https://zzulihrs.github.io/post/git/">
+        </link>
+        <updated>2022-01-08T13:06:39.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="1-git教程">1. git教程</h1>
+<p>代码托管平台：<a href="git.acwing.com">git.acwing.com</a></p>
+<h2 id="11-git基本概念">1.1. git基本概念</h2>
+<p>工作区：仓库的目录。工作区是独立于各个分支的。<br>
+暂存区：数据暂时存放的区域，类似于工作区写入版本库前的缓存区。暂存区是独立于各个分支的。<br>
+版本库：存放所有已经提交到本地仓库的代码版本<br>
+版本结构：树结构，树中每个节点代表一个代码版本。</p>
+<h2 id="12-git常用命令">1.2 git常用命令</h2>
+<ol>
+<li><code>git config --global user.name xxx</code>：设置全局用户名，信息记录在<code>~/.gitconfig</code>文件中</li>
+<li><code>git config --global user.email xxx@xxx.com</code>：设置全局邮箱地址，信息记录在<code>~/ .gitconfig</code>文件中</li>
+<li><code>git init</code>：将当前目录配置成git仓库，信息记录在隐藏的<code>.git</code>文件夹中</li>
+<li><code>git add XX</code>：将XX文件添加到暂存区</li>
+<li><code>git add</code> .：将所有待加入暂存区的文件加入暂存区</li>
+<li><code>git rm --cached XX</code>：将文件从仓库索引目录中删掉</li>
+<li><code>git commit -m</code> &quot;给自己看的备注信息&quot;：将暂存区的内容提交到当前分支</li>
+<li><code>git status</code>：查看仓库状态</li>
+<li><code>git diff XX</code>：查看XX文件相对于暂存区修改了哪些内容</li>
+<li><code>git log</code>：查看当前分支的所有版本</li>
+<li><code>git reflog</code>：查看HEAD指针的移动历史（包括被回滚的版本）</li>
+<li><code>git reset --hard HEAD^</code> 或 <code>git reset --hard HEAD~</code>：将代码库回滚到上一个版本</li>
+<li><code>git reset --hard HEAD^^</code>：往上回滚两次，以此类推</li>
+<li><code>git reset --hard HEAD~100</code>：往上回滚100个版本</li>
+<li><code>git reset --hard</code> 版本号：回滚到某一特定版本</li>
+<li><code>git checkout — XX</code>或<code>git restore XX</code>：将XX文件尚未加入暂存区的修改全部撤销</li>
+<li><code>git remote add origin git@git.acwing.com:xxx/XXX.git</code>：将本地仓库关联到远程仓</li>
+<li><code>git push -u</code>(第一次需要-u以后不需要)：将当前分支推送到远程仓库</li>
+<li><code>git push origin branch_name</code>：将本地的某个分支推送到远程仓库</li>
+<li><code>git clone git@git.acwing.com:xxx/XXX.git</code>：将远程仓库XXX下载到当前目录下</li>
+<li><code>git checkout -b branch_name</code>：创建并切换到<code>branch_name</code>这个分支</li>
+<li><code>git branch</code>：查看所有分支和当前所处分支</li>
+<li><code>git checkout branch_name</code>：切换到<code>branch_name</code>这个分支</li>
+<li><code>git merge branch_name</code>：将分支<code>branch_name</code>合并到当前分支上</li>
+<li><code>git branch -d branch_name</code>：删除本地仓库的<code>branch_name</code>分支</li>
+<li><code>git branch branch_name</code>：创建新分支</li>
+<li><code>git push --set-upstream origin branch_name</code>：设置本地的<code>branch_name</code>分支对应远程仓库的<code>branch_name</code>分支</li>
+<li><code>git push -d origin branch_name</code>：删除远程仓库的<code>branch_name</code>分支</li>
+<li><code>git pull</code>：将远程仓库的当前分支与本地仓库的当前分支合并</li>
+<li><code>git pull origin branch_name</code>：将远程仓库的<code>branch_name</code>分支与本地仓库的当前分支合并</li>
+<li><code>git branch --set-upstream-to=origin/branch_name1 branch_name2</code>：将远程的<code>branch_name1</code>分支与本地的<code>branch_name2</code>分支对应</li>
+<li><code>git checkout -t origin/branch_name</code> 将远程的<code>branch_name</code>分支拉取到本地</li>
+<li><code>git stash</code>：将工作区和暂存区中尚未提交的修改存入栈中</li>
+<li><code>git stash apply</code>：将栈顶存储的修改恢复到当前分支，但不删除栈顶元素</li>
+<li><code>git stash drop</code>：删除栈顶存储的修改</li>
+<li><code>git stash pop</code>：将栈顶存储的修改恢复到当前分支，同时删除栈顶元素</li>
+<li><code>git stash list</code>：查看栈中所有元素</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ssh]]></title>
         <id>https://zzulihrs.github.io/post/ssh/</id>
@@ -83,6 +138,9 @@ ssh myserver &quot;for ((i = 0; i &lt; 10; i ++ )) do echo $i; done&quot;
 </code></pre>
 <p>将<code>source</code>路径下的文件复制到<code>destination</code>中</p>
 <p>一次复制多个文件：</p>
+<pre><code class="language-shell">scp source1 source2 destination
+</code></pre>
+<p>复制文件夹：</p>
 <pre><code class="language-shell">scp -r ~/tmp myserver:/home/acs/
 </code></pre>
 <p>将本地家目录中的<code>tmp</code>文件夹复制到<code>myserver</code>服务器中的<code>/home/acs/</code>目录下。</p>
@@ -1251,7 +1309,9 @@ My name is: yxc
 <a href="#2.2">cf Hello 2022 A. Stable Arrangement of Rooks</a><br>
 <a href="#2.3">cf Hello 2022 B. Integers Shop</a></li>
 <li>2022/01/06<br>
-<a href="https://pintia.cn/problem-sets/1478580278661283840/problems/1478580509620633600">第八届蓝桥杯 A组 正则问题</a>(#3.1)</li>
+<a href="#3.1">第八届蓝桥杯 A组 正则问题</a></li>
+<li>2022/01<br>
+<a href="#4.1">leetcod第68场双周赛 2116. 判断一个括号字符串是否有效</a></li>
 </ul>
 <h2 id = "1.1"><h2>
 # 2022/01/02
@@ -1652,7 +1712,7 @@ signed main()
         sol();
 }
 </code></pre>
-<h2 id = "3.1"><正则表达式><h2>
+<h2 id = "3.1">正则表达式<h2>
 <p>额，数据有问题，()数量都不想等</p>
 <pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
 #define INF 0x7f7f7f7f
@@ -1743,6 +1803,37 @@ signed main()
     //int _ = 1; scanf(&quot;%d&quot;, &amp;_);	while (_--)
         sol();
 }
+</code></pre>
+<h2 id = "4.1"><h2>
+<p><a href="https://leetcode-cn.com/problems/check-if-a-parentheses-string-can-be-valid/">2116. 判断一个括号字符串是否有效</a></p>
+<pre><code class="language-c++">class Solution {
+public:
+	int n;
+    bool canBeValid(string s, string lock) {
+  		 n = SZ(s);
+  		 int l = 0, r = 0;
+  		 if(n%2) return false;
+
+  		 for(int i = 0; i &lt; n; ++i) {
+  		 	int a;
+  		 	if(s[i] == '(') a = 1;
+  		 	else a = -1;
+
+  		 	if(lock[i] == '1') {
+  		 		if(a) r = max(0, r), l = max(0, l);
+  		 		l += a;
+  		 		r += a;
+  		 		if(r &lt; 0) return false;
+  		 	}
+  		 	else {
+  		 		l--;
+  		 		r++;
+  		 	}
+
+  		 }
+  		 return l&lt;=0&amp;&amp;r&gt;=0;
+    }
+}T;
 </code></pre>
 ]]></content>
     </entry>
