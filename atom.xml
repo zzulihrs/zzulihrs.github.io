@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2022-01-08T14:11:03.083Z</updated>
+    <updated>2022-01-17T16:07:26.923Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -10,6 +10,142 @@
     <logo>https://zzulihrs.github.io/images/avatar.png</logo>
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, blog</rights>
+    <entry>
+        <title type="html"><![CDATA[管道、环境变量与常用命令]]></title>
+        <id>https://zzulihrs.github.io/post/guan-dao-huan-jing-bian-liang-yu-chang-yong-ming-ling/</id>
+        <link href="https://zzulihrs.github.io/post/guan-dao-huan-jing-bian-liang-yu-chang-yong-ming-ling/">
+        </link>
+        <updated>2022-01-17T06:18:15.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li><strong>管道</strong><br>
+概念<br>
+管道类似于文件重定向，可以将前一个命令的stdout重定向到下一个命令的stdin。<br>
+<code>|</code>就是管道，从一边流向另外一边<br>
+要点<br>
+管道命令仅处理stdout，会忽略stderr。<br>
+管道右边的命令必须能接受stdin。<br>
+多个管道命令可以串联。<br>
+与文件重定向的区别<br>
+文件重定向左边为命令，右边为文件。<br>
+管道左右两边均为命令，左边有stdout，右边有stdin。<br>
+举例<br>
+统计当前目录下所有python文件的总行数，其中find、xargs、wc等命令可以参考常用命令这一节内容。</li>
+</ol>
+<p>find . -name '*.py' | xargs cat | wc -l</p>
+<ol start="2">
+<li><strong>环境变量</strong><br>
+概念<br>
+Linux系统中会用很多环境变量来记录配置信息。<br>
+环境变量类似于全局变量，可以被各个进程访问到。我们可以通过修改环境变量来方便地修改系统配置。</li>
+</ol>
+<p>查看<br>
+列出当前环境下的所有环境变量：</p>
+<p>env  # 显示当前用户的变量<br>
+set  # 显示当前shell的变量，包括当前用户的变量;<br>
+export  # 显示当前导出成用户变量的shell变量<br>
+输出某个环境变量的值：</p>
+<p>echo $PATH<br>
+修改<br>
+环境变量的定义、修改、删除操作可以参考3. shell语法——变量这一节的内容。</p>
+<p>为了将对环境变量的修改应用到未来所有环境下，可以将修改命令放到~/.bashrc文件中。<br>
+修改完~/.bashrc文件后，记得执行source ~/.bashrc，来将修改应用到当前的bash环境下。</p>
+<p>为何将修改命令放到~/.bashrc，就可以确保修改会影响未来所有的环境呢？</p>
+<p>每次启动bash，都会先执行~/.bashrc。<br>
+每次ssh登陆远程服务器，都会启动一个bash命令行给我们。<br>
+每次tmux新开一个pane，都会启动一个bash命令行给我们。<br>
+所以未来所有新开的环境都会加载我们修改的内容。<br>
+常见环境变量<br>
+<code>HOME</code>：用户的家目录。<br>
+<code>PATH</code>：可执行文件（命令）的存储路径。路径与路径之间用:分隔。当某个可执行文件同时出现在多个路径中时，会选择从左到右数第一个路径中的执行。下列所有存储路径的环境变量，均采用从左到右的优先顺序。<br>
+<code>LD_LIBRARY_PATH</code>：用于指定动态链接库(.so文件)的路径，其内容是以冒号分隔的路径列表。<br>
+<code>C_INCLUDE_PATH</code>：C语言的头文件路径，内容是以冒号分隔的路径列表。<br>
+<code>CPLUS_INCLUDE_PATH</code>：CPP的头文件路径，内容是以冒号分隔的路径列表。<br>
+<code>PYTHONPATH</code>：Python导入包的路径，内容是以冒号分隔的路径列表。<br>
+<code>JAVA_HOME</code>：jdk的安装目录。<br>
+<code>CLASSPATH</code>：存放Java导入类的路径，内容是以冒号分隔的路径列表</p>
+<ol start="3">
+<li><strong>常用命令</strong></li>
+</ol>
+<p>Linux命令非常多，本节讲解几个常用命令。其他命令依赖于大家根据实际操作环境，边用边查。</p>
+<p>系统状况<br>
+top：查看所有进程的信息（Linux的任务管理器）<br>
+打开后，输入M：按使用内存排序<br>
+打开后，输入P：按使用CPU排序<br>
+打开后，输入q：退出<br>
+df -h：查看硬盘使用情况<br>
+free -h：查看内存使用情况<br>
+du -sh：查看当前目录占用的硬盘空间<br>
+ps aux：查看所有进程<br>
+kill -9 pid：杀死编号为pid的进程<br>
+传递某个具体的信号：kill -s SIGTERM pid<br>
+netstat -nt：查看所有网络连接<br>
+w：列出当前登陆的用户<br>
+ping www.baidu.com：检查是否连网<br>
+文件权限<br>
+chmod：修改文件权限<br>
+chmod +x xxx：给xxx添加可执行权限<br>
+chmod -x xxx：去掉xxx的可执行权限<br>
+chmod 777 xxx：将xxx的权限改成777<br>
+chmod 777 xxx -R：递归修改整个文件夹的权限<br>
+文件检索<br>
+find /path/to/directory/ -name '<em>.py'：搜索某个文件路径下的所有</em>.py文件<br>
+grep xxx：从stdin中读入若干行数据，如果某行中包含xxx，则输出该行；否则忽略该行。<br>
+wc：统计行数、单词数、字节数<br>
+既可以从stdin中直接读入内容；也可以在命令行参数中传入文件名列表；<br>
+wc -l：统计行数<br>
+wc -w：统计单词数<br>
+wc -c：统计字节数<br>
+tree：展示当前目录的文件结构<br>
+tree /path/to/directory/：展示某个目录的文件结构<br>
+tree -a：展示隐藏文件<br>
+ag xxx：搜索当前目录下的所有文件，检索xxx字符串<br>
+cut：分割一行内容<br>
+从stdin中读入多行数据<br>
+echo $PATH | cut -d ':' -f 3,5：输出PATH用:分割后第3、5列数据<br>
+echo $PATH | cut -d ':' -f 3-5：输出PATH用:分割后第3-5列数据<br>
+echo $PATH | cut -c 3,5：输出PATH的第3、5个字符<br>
+echo $PATH | cut -c 3-5：输出PATH的第3-5个字符<br>
+sort：将每行内容按字典序排序<br>
+可以从stdin中读取多行数据<br>
+可以从命令行参数中读取文件名列表<br>
+xargs：将stdin中的数据用空格或回车分割成命令行参数<br>
+find . -name '<em>.py' | xargs cat | wc -l：统计当前目录下所有python文件的总行数<br>
+查看文件内容<br>
+more：浏览文件内容<br>
+回车：下一行<br>
+空格：下一页<br>
+b：上一页<br>
+q：退出<br>
+less：与more类似，功能更全<br>
+回车：下一行<br>
+y：上一行<br>
+Page Down：下一页<br>
+Page Up：上一页<br>
+q：退出<br>
+head -3 xxx：展示xxx的前3行内容<br>
+同时支持从stdin读入内容<br>
+tail -3 xxx：展示xxx末尾3行内容<br>
+同时支持从stdin读入内容<br>
+用户相关<br>
+history：展示当前用户的历史操作。内容存放在~/.bash_history中<br>
+工具<br>
+md5sum：计算md5哈希值<br>
+可以从stdin读入内容<br>
+也可以在命令行参数中传入文件名列表；<br>
+time command：统计command命令的执行时间<br>
+ipython3：交互式python3环境。可以当做计算器，或者批量管理文件。<br>
+! echo &quot;Hello World&quot;：!表示执行shell脚本<br>
+watch -n 0.1 command：每0.1秒执行一次command命令<br>
+tar：压缩文件<br>
+tar -zcvf xxx.tar.gz /path/to/file/</em>：压缩<br>
+tar -zxvf xxx.tar.gz：解压缩<br>
+diff xxx yyy：查找文件xxx与yyy的不同点<br>
+安装软件<br>
+sudo command：以root身份执行command命令<br>
+apt-get install xxx：安装软件<br>
+pip install xxx --user --upgrade：安装python包</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ git]]></title>
         <id>https://zzulihrs.github.io/post/git/</id>
