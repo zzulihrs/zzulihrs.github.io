@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>algorithm | blog</title>
+<title>py基础 | blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,9 +18,15 @@
 
 
 
-    <meta name="description" content="
-" />
-    <meta name="keywords" content="algorithm" />
+    <meta name="description" content="pip
+
+pip install 安装包
+pip uninstall 删除
+pip list 显示已经安装的包
+pip freeze 显示已经安装的包，并且以指定的格式显示
+修改pip下载源
+pip install 包名 -i 国内源(ht..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -91,22 +97,73 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">algorithm</h2>
-            <div class="post-date">2021-12-28</div>
+            <h2 class="post-title">py基础</h2>
+            <div class="post-date">2023-02-24</div>
             
             <div class="post-content" v-pre>
-              <!-- more -->
+              <h2 id="pip">pip</h2>
+<ul>
+<li>pip install 安装包</li>
+<li>pip uninstall 删除</li>
+<li>pip list 显示已经安装的包</li>
+<li>pip freeze 显示已经安装的包，并且以指定的格式显示<br>
+修改pip下载源<br>
+pip install 包名 -i 国内源(https://pypi.douban.com/simple/)</li>
+</ul>
+<p>单行注释'#'<br>
+多行注释'''<br>
+pycharm破解https://www.cnblogs.com/Dengv5/p/16418279.html<br>
+pycharm选择2022.1.3专业版</p>
+<p>强制类型转换<br>
+int()<br>
+str()#转成字符串<br>
+type()#变量类型</p>
+<p>//取整除<br>
+**指数</p>
+<p>多个变量赋值<br>
+a, b, c = 1, 2, 3</p>
+<p>输入输出格式<br>
+passwork = input()<br>
+print('我的名字是%s, 我的年龄是%d' % (name, age))</p>
+<p>循环<br>
+for i in rang(1, 5，3) 左闭右开[1, 5)， 3是步长</p>
+<p>字符串处理<br>
+获取长度：len(s)<br>
+查找指定内容在字符串中是否出现：find()<br>
+判断是否是什么开头/结尾：startswith,endswith<br>
+计算出现次数: count()<br>
+替换内容：replace()<br>
+切割字符串：split()<br>
+修改大小写：upper(), lower()<br>
+空格处理：strip(), 去空格<br>
+字符串拼接：join()</p>
+<h2 id="列表增删改查">列表增删改查</h2>
+<p>append()在末尾添加元素<br>
+insert(index, str)在指定位置插入元素, index是插入位置<br>
+extend()合并两个列表<br>
+查找<br>
+in 和 not in<br>
+删除<br>
+del arr[index] 根据下标进行删除<br>
+pop()删除最后一个元素<br>
+remove根据元素的值进行删除</p>
+<p>定义只有一个元素的元组，需要在唯一的元素后加一个逗号<br>
+a_tuple = (5, )</p>
+<p>切片：[起始:终止:步长]，也可以不加步长<br>
+可以[起始:] 或者[:终止]</p>
+<h2 id="字典增删改查">字典增删改查</h2>
 
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://zzulihrs.github.io/tag/wyKnZKGYh/" class="tag">
-                    algorithm
-                  </a>
-                
-              </div>
             
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zzulihrs.github.io/post/zu-yun-fu-wu-qi-ji-pei-docker-huan-jing/">
+                  <h3 class="post-title">
+                    租云服务器及配docker环境
+                  </h3>
+                </a>
+              </div>
             
 
             
