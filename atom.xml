@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zzulihrs.github.io</id>
     <title>blog</title>
-    <updated>2023-02-25T08:07:54.766Z</updated>
+    <updated>2023-02-25T13:39:30.785Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zzulihrs.github.io"/>
     <link rel="self" href="https://zzulihrs.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://zzulihrs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, blog</rights>
     <entry>
-        <title type="html"><![CDATA[py基础]]></title>
+        <title type="html"><![CDATA[py基础和爬虫]]></title>
         <id>https://zzulihrs.github.io/post/py-ji-chu/</id>
         <link href="https://zzulihrs.github.io/post/py-ji-chu/">
         </link>
@@ -67,6 +67,49 @@ a_tuple = (5, )</p>
 <p>切片：[起始:终止:步长]，也可以不加步长<br>
 可以[起始:] 或者[:终止]</p>
 <h2 id="字典增删改查">字典增删改查</h2>
+<p>获取字典的value值<br>
+person['name'], person.get('name')<br>
+不存在时第一种方式会报错，.get会返回null值<br>
+删除del person['name']<br>
+del person 删除字典这个变量<br>
+person.clear()清空字典，但是保留字典对象</p>
+<p>遍历字典所有的key： for key in person.keys():<br>
+遍历字典的value：for value in person.values():<br>
+遍历字典的key和value：for key, value in person.items():<br>
+遍历字典的项/元素：for item in person.items():</p>
+<h2 id="文件的打开与关闭">文件的打开与关闭</h2>
+<p>fp = open('test.txt', 'w') # 如果文件没有自动创建,w是写模式<br>
+fp.write('hello world')<br>
+用完记得关闭 fp.close()<br>
+w模式会直接覆盖文件内容， a模式下可以追加到文件<br>
+读数据 content = fp.read()<br>
+读一行fp.readline<br>
+读多行，返回的是列表，fp.readlines</p>
+<h2 id="序列化的两种方式">序列化的两种方式</h2>
+<p>//导入json模块到该文件中<br>
+//我们在使用scrapy框架的时候，该框架会返回一个对象，我们要将对象写入到文件中，就要使用json.dumps()</p>
+<p>import json<br>
+names = json.dumps(name_list) #将python对象变成json字符串<br>
+fp.write(names)<br>
+fp.close()</p>
+<p>dump将对象转化为字符串的同时，指定一个文件的对象，然后把转化后的字符串写入到文件中<br>
+json.dump(name_list, fp)#相当于names = json.dumps(name_list)和fp.write(names)</p>
+<p>反序列化：将json字符串变成一个python对象<br>
+import json<br>
+content = fp.read()<br>
+json.loads(content)</p>
+<p>result = json.load(fp)//直接读完变成python对象</p>
+<p>异常的格式<br>
+try:<br>
+可能出现异常的代码<br>
+except  异常的类型<br>
+友好的提示</p>
+<pre><code>try:
+     fp = open('test.txt', 'r')
+     fp.read()
+except FileNotFoundError:
+     print('文件不存在')
+</code></pre>
 ]]></content>
     </entry>
     <entry>
