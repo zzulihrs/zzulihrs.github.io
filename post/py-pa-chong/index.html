@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>py爬虫 | blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zzulihrs.github.io/favicon.ico?v=1677498171542">
+<link rel="stylesheet" href="https://zzulihrs.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+urllib库使用
+
+urllib库基础
+urllib的一个类型和六个方法
+urllib下载
+urllib请求对象的定制
+urllib_get请求的quote方法(将汉字编码)
+urllib_get请求的urlencode方法
+urlli..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zzulihrs.github.io">
+        <img src="https://zzulihrs.github.io/images/avatar.png?v=1677498171542" class="site-logo">
+        <h1 class="site-title">blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      fw
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zzulihrs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">py爬虫</h2>
+            <div class="post-date">2023-02-26</div>
+            
+            <div class="post-content" v-pre>
+              <p><ul class="markdownIt-TOC">
+<li><a href="#urllib%E5%BA%93%E4%BD%BF%E7%94%A8">urllib库使用</a>
+<ul>
+<li><a href="#urllib%E5%BA%93%E5%9F%BA%E7%A1%80">urllib库基础</a></li>
+<li><a href="#urllib%E7%9A%84%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%85%AD%E4%B8%AA%E6%96%B9%E6%B3%95">urllib的一个类型和六个方法</a></li>
+<li><a href="#urllib%E4%B8%8B%E8%BD%BD">urllib下载</a></li>
+<li><a href="#urllib%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6">urllib请求对象的定制</a></li>
+<li><a href="#urllib_get%E8%AF%B7%E6%B1%82%E7%9A%84quote%E6%96%B9%E6%B3%95%E5%B0%86%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81">urllib_get请求的quote方法(将汉字编码)</a></li>
+<li><a href="#urllib_get%E8%AF%B7%E6%B1%82%E7%9A%84urlencode%E6%96%B9%E6%B3%95">urllib_get请求的urlencode方法</a></li>
+<li><a href="#urllib_post%E8%AF%B7%E6%B1%82%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91">urllib_post请求百度翻译</a></li>
+<li><a href="#urllib_post%E8%AF%B7%E6%B1%82%E7%99%BE%E5%BA%A6%E7%BF%BB%E8%AF%91%E4%B9%8B%E8%AF%A6%E7%BB%86%E7%BF%BB%E8%AF%91">urllib_post请求百度翻译之详细翻译</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h1 id="urllib库使用">urllib库使用</h1>
+<h2 id="urllib库基础">urllib库基础</h2>
+<pre><code class="language-python"># (1) 定义一个url，就是你访问的地址
+url = 'www.baidu.com'
+
+#(2) 模拟浏览器向服务器发送请求
+response =urllib.request.url
+
+#(3)获取响应中的页面的源码
+#read方法 返回的是字节形式的二进制数据
+#将二进制的数据转换成字符串
+#二进制--》字符串 解码 decode('编码的格式')
+content = response.read().decode('utf-8')
+
+#(4)打印数据
+print(content)
+</code></pre>
+<h2 id="urllib的一个类型和六个方法">urllib的一个类型和六个方法</h2>
+<pre><code class="language-python">import urllib.request
+
+url = 'http://www.baidu.com'
+
+# 模拟浏览器向服务器发送请求
+response = urllib.request.urlopen(url)
+
+# 一个类型和六个方法
+# response是HTTPRespnse的类型
+print(type(response))
+
+# 按照一个字节一个字节去读
+content = response.read().decode()
+
+# 返回多少个字节
+content = response.read(5)
+
+# 读取一行
+content = response.readline()
+
+# 读取多行
+content = response.readlines()
+
+# 返回状态码
+print(response.getcode())
+
+# 返回url地址
+print(response.geturl())
+
+# 返回状态信息
+print(response.getheaders())
+</code></pre>
+<h2 id="urllib下载">urllib下载</h2>
+<pre><code class="language-python">import urllib.request
+
+# 下载网页
+url_page = 'http://www.baidu.com'
+
+# url代表下载的路径，filename文件名
+urllib.request.urlretrieve(url_page, 'baidu.html')
+
+# 下载图片
+url_img = ''
+urllib.request.urlretrieve(url_img, filename='test.jpg')
+
+# 下载视频,pycharm没有内置播放器，在本地看视频
+url_video = ''
+urllib.request.urlretrieve(url_video, 'test.mp4')
+</code></pre>
+<h2 id="urllib请求对象的定制">urllib请求对象的定制</h2>
+<pre><code class="language-python">import urllib.request
+
+url = 'https://www.baidu.com'
+
+# url的组成
+# http/https www.baidu.com
+# 协议   主机   端口号  路径   参数  锚点
+# http 80  https 443
+# mysql 3306 oracle 1521
+# redis 6379 mongodb 27017
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+}
+# 因为urlopen方法中不能存储字典，所以headers不能传递进区
+# 因为htpps使用了ssl认证，需要浏览器、操作系统等信息
+# 请求对象的定制
+# 主义 因为参数顺序的问题，不能直接写url和headers 中间还有data，所以我们需要关键字传参
+request = urllib.request.Request(url=url,headers=headers)
+
+response = urllib.request.urlopen(request)
+content = response.read().decode('utf-8')
+print(content)
+
+</code></pre>
+<h2 id="urllib_get请求的quote方法将汉字编码">urllib_get请求的quote方法(将汉字编码)</h2>
+<pre><code class="language-python">import urllib.request
+import  urllib.parse
+
+# 要求 获取 https://www.baidu.com/s?wd=周杰伦 的网页源码
+url = 'https://www.baidu.com/s?wd='
+
+# 将周杰伦三个字编程unicode编码的格式
+# 我们需要依赖于urlib.parse
+name = urllib.parse.quote('周杰伦')
+
+url = url + name
+
+# 请求对象的定制是为了解决反爬的第一种手段
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+}
+
+# 请求对象的定制
+request = urllib.request.Request(url=url,headers=headers)
+
+# 模拟浏览器向服务器发送请求
+response = urllib.request.urlopen(request)
+
+#获取响应的内容
+content = response.read().decode('utf-8')
+print(content)
+
+</code></pre>
+<h2 id="urllib_get请求的urlencode方法">urllib_get请求的urlencode方法</h2>
+<pre><code class="language-python">import urllib.parse
+
+data = {
+    'wd': '周杰伦',
+    'sex': '男',
+    'location': '中国台湾省'
+}
+
+base_url = 'https://www.baidu.com/s?'
+
+new_data = urllib.parse.urlencode(data)
+#请求资源路径
+url = base_url + new_data
+
+</code></pre>
+<h2 id="urllib_post请求百度翻译">urllib_post请求百度翻译</h2>
+<pre><code class="language-python">
+# post请求
+import json
+import urllib.request
+import urllib.parse
+
+url = 'https://fanyi.baidu.com/sug'
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+}
+
+data = {
+    'kw': 'spider'
+}
+
+# post请求的参数必须要进行编码
+data = urllib.parse.urlencode(data).encode('utf-8')
+
+# post请求的参数，是不会拼接在url后面的，而是需要放在请求对象定制的参数中
+# post请求的参数，必须要进行编码
+request = urllib.request.Request(url=url, data=data, headers=headers)
+
+# 模拟浏览器向服务器发送请求
+response = urllib.request.urlopen(request)
+
+#获取响应数据
+content = response.read().decode('utf-8')
+
+# 字符串--》json对象
+
+obj = json.loads(content)
+print(obj)
+
+</code></pre>
+<h2 id="urllib_post请求百度翻译之详细翻译">urllib_post请求百度翻译之详细翻译</h2>
+<pre><code class="language-python">
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zzulihrs.github.io/post/py-ji-chu/">
+                  <h3 class="post-title">
+                    py基础
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
